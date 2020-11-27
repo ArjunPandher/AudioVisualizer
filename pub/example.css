@@ -20,6 +20,12 @@ img {
     align-items: center;
 }
 
+#audioVisDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .footer {
     width: 800px;
     display: flex;
