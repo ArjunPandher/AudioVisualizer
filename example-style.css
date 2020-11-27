@@ -1,0 +1,28 @@
+img {
+    width: 600px;
+    height: 600px;
+}
+
+.header {
+    text-align: center;
+}
+
+.description {
+    width: 800px;
+    display: flex;
+    text-align: center;
+    margin: auto;
+}
+
+#audioPlayer {
+    display: flex;
+    text-align: center;
+    margin: 0, auto;
+}
+
+.footer {
+    width: 800px;
+    display: flex;
+    text-align: center;
+    margin: auto;
+}
