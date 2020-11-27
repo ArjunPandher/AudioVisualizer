@@ -1,14 +1,26 @@
 "use strict";
 
+
+
 class AudioVisGenerator {
-    constructor(audioPath, audioElementId, audioCtx) {
+    constructor(audioPath, audioElementId) {
         this.canvases = []; // List of visualiser canvases
         this.canvasNum = 0; // Number of canvases currently created under this instance of the library
         this.audioPath = audioPath; // Location of the audio source
         this.audioElement = document.getElementById(audioElementId); // The actual HTML audio element
+        
+        this.audioCtx = {}
+        this.audioAnalyser = {}
+        this.audioData = {}
 
-        // Element should be of type <audio id="source" src={audioPath}></audio>
-        this.audioCtx = audioCtx; // The audio context of the audio source
+        this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
+
+        this.isSetUp = false
+    }
+
+    // Call this on user input
+    setUp() {
+        this.audioCtx = new AudioContext(); // The audio context of the audio source
         this.audioAnalyser = this.audioCtx.createAnalyser(); // The object responsible for analzying the audio being played
         this.audioAnalyser.fftSize = 2 ** 11; // Setting the analyser's array input size
 
@@ -18,20 +30,31 @@ class AudioVisGenerator {
 
         this.audioData = new Uint8Array(this.audioAnalyser.frequencyBinCount); // Storing the audio data in an array of predefined size
 
-        this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
+        this.isSetUp = true
     }
+
     // Creating a canvas, and returning it
     makeCanvas() {
+        if (this.isSetUp === false) {
+            console.log("Run setUp() first");
+            return;
+        }
+
         // Creating a new canvas, adding it to this.canvases
         const canvas = document.createElement("canvas");
         canvas.id = "audioVisCanvas" + this.canvasNum;
         this.canvasNum = this.canvasNum + 1;
-        this.canvases.push(canvas);
+        this.canvases.push(canvasNum);
 
         return canvas;
     }
     // animating the canvas every frame
     animateCanvas(canvasType, canvas, ctx) {
+        if (this.isSetUp === false) {
+            console.log("Run setUp() first");
+            return;
+        }
+
         if (!this.canvasTypes.includes(canvasType)) {
             console.log("Invalid canvas type");
             return;
@@ -95,7 +118,7 @@ class AudioVisGenerator {
             if (canvasType === "bar") {
                 barDraw(this.audioData);
             } else if (canvasType === "circle") {
-                circleDraw(data);
+                circleDraw(this.audioData);
             }
 
             requestAnimationFrame(animation);
