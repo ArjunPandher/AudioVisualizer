@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 class AudioVisGenerator {
     constructor(audioPath, audioElementId) {
         this.canvases = []; // List of visualiser canvases

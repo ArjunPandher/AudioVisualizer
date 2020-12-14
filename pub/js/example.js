@@ -1,4 +1,4 @@
-const audioGen = new AudioVisGenerator("./God Is Perfect.mp3", "player")
+const audioGen = new AudioVisGenerator("https://audio.jukehost.co.uk/0wcStwqV7dUaVDX34dr7yc1UqXBl13pi", "player")
 const barVis = document.createElement("CANVAS")
 const circleVis = document.createElement("CANVAS")
 
