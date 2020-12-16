@@ -29,6 +29,11 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '/pub/example.html'))
 })
 
+app.get('/God Is Perfect.mp3', (req, res) => {
+	// sending an mp3 file
+	res.sendFile(path.join(__dirname, '/pub/God Is Perfect.mp3'))
+})
+
 // Error codes
 app.get('/problem', (req, res) => {
 	// You can indicate a status code to send back
