@@ -1,4 +1,4 @@
-const audioGen = new AudioVisGenerator("https://audio.jukehost.co.uk/0wcStwqV7dUaVDX34dr7yc1UqXBl13pi", "player")
+const audioGen = new AudioVisGenerator("https://quiet-dawn-92680.herokuapp.com/God%20Is%20Perfect.mp3", "player")
 const barVis = document.createElement("CANVAS")
 const circleVis = document.createElement("CANVAS")
 
