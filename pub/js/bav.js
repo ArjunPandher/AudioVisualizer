@@ -106,11 +106,6 @@ class AudioVisGenerator {
                 animCanvas.ctx.closePath();
             }
 
-            if (!this.canvasTypes.includes(canvasType)) {
-                console.log("Invalid canvas type");
-                return;
-            }
-
             requestAnimationFrame(animation.bind(this));
         }
     }
