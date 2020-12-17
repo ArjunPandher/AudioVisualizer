@@ -106,11 +106,6 @@ class AudioVisGenerator {
                 animCanvas.ctx.closePath();
             }
 
-            if (this.isSetUp === false) {
-                console.log("Run setUp() first");
-                return;
-            }
-
             if (!this.canvasTypes.includes(canvasType)) {
                 console.log("Invalid canvas type");
                 return;
