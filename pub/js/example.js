@@ -12,7 +12,6 @@ audioGen.addCanvas(circleVis, "circle")
 const audioElement = document.getElementById("player")
 
 audioElement.onplay = ()=>{
-    audioGen.setUp();
     audioGen.animateAllCanvases()
     console.log(audioGen)
 }
