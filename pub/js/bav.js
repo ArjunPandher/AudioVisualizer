@@ -82,7 +82,7 @@ class AudioVisGenerator {
                 bassAvg += bassArr[i];
             }
             bassAvg = bassAvg / bassArr.length;
-            let bassRad = 75 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.01 * bassAvg;
+            let bassRad = 75 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.001 * bassAvg;
 
             let trebArr = data.slice(256, 700);
             let trebAvg = 0;
@@ -90,7 +90,7 @@ class AudioVisGenerator {
                 trebAvg += trebArr[i];
             }
             trebAvg = trebAvg / trebArr.length;
-            let trebRad = 25 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.01 * trebAvg;
+            let trebRad = 25 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.001 * trebAvg;
 
             animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
 
