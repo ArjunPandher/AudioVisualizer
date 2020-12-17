@@ -37,6 +37,7 @@ class AudioVisGenerator {
     }
 
     animateAllCanvases() {
+        animateCanvas.bind(this)
         for (let i = 0; i < this.canvasNum; i++) {
             animateCanvas(this.canvases[i])
         }
