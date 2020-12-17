@@ -61,14 +61,14 @@ class AudioVisGenerator {
             // Translating our data fron a Uint8Array to a regular array
             data = Array.from(data);
             // Clearing the rectangle every time this is called
-            animCanvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
+            animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
             // Setting the space between each bar
-            let space = canvas.width / data.length;
+            let space = animCanvas.canvas.width / data.length;
             // Changing the size of each bar in the canvas based on the audio data
             data.forEach((value, index) => {
                 animCanvas.ctx.beginPath();
-                animCanvas.ctx.moveTo(space * index, canvas.height);
-                animCanvas.ctx.lineTo(space * index, canvas.height - value);
+                animCanvas.ctx.moveTo(space * index, animCanvas.canvas.height);
+                animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - value);
                 animCanvas.ctx.stroke();
             });
         }
@@ -82,7 +82,7 @@ class AudioVisGenerator {
                 bassAvg += bassArr[i];
             }
             bassAvg = bassAvg / bassArr.length;
-            let bassRad = 75 + Math.min(canvas.height, canvas.width) * 0.01 * bassAvg;
+            let bassRad = 75 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.01 * bassAvg;
 
             let trebArr = data.slice(256, 700);
             let trebAvg = 0;
@@ -90,18 +90,18 @@ class AudioVisGenerator {
                 trebAvg += trebArr[i];
             }
             trebAvg = trebAvg / trebArr.length;
-            let trebRad = 25 + Math.min(canvas.height, canvas.width) * 0.01 * trebAvg;
+            let trebRad = 25 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.01 * trebAvg;
 
-            animCanvas.ctx.clearRect(0, 0, canvas.width, canvas.height);
+            animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
 
             animCanvas.ctx.beginPath();
-            animCanvas.ctx.arc(canvas.width / 2, canvas.height / 2, bassRad, 0, Math.PI * 2, false);
+            animCanvas.ctx.arc(animCanvas.canvas.width / 2, animCanvas.canvas.height / 2, bassRad, 0, Math.PI * 2, false);
             animCanvas.ctx.closePath();
             animCanvas.ctx.fillStyle = "#7CC6FE";
             animCanvas.ctx.fill();
 
             animCanvas.ctx.beginPath();
-            animCanvas.ctx.arc(canvas.width / 2, canvas.height / 2, trebRad, 0, Math.PI * 2, false);
+            animCanvas.ctx.arc(animCanvas.canvas.width / 2, animCanvas.canvas.height / 2, trebRad, 0, Math.PI * 2, false);
             animCanvas.ctx.lineWidth = 4;
             animCanvas.ctx.strokeStyle = "#CCD5FF";
             animCanvas.ctx.stroke();
