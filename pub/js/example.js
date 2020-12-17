@@ -6,14 +6,13 @@ const audioDiv = document.getElementById("audioVisDiv")
 audioDiv.appendChild(barVis)
 audioDiv.appendChild(circleVis)
 
-audioGen.addCanvas(barVis)
-audioGen.addCanvas(circleVis)
+audioGen.addCanvas(barVis, "bar")
+audioGen.addCanvas(circleVis, "circle")
 
 const audioElement = document.getElementById("player")
 
 audioElement.onplay = ()=>{
     audioGen.setUp();
-    audioGen.animateCanvas("bar", barVis, barVis.getContext("2d"))
-    audioGen.animateCanvas("circle", circleVis, circleVis.getContext("2d"))
+    audioGen.animateAllCanvases()
     console.log(audioGen)
 }
