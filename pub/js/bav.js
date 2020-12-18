@@ -141,7 +141,7 @@ class AudioVisGenerator {
                 bassAvg += bassArr[i];
             }
             bassAvg = bassAvg / bassArr.length;
-            let bassRad = 75 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.001 * bassAvg;
+            let bassRad = 75 + Math.min(animCanvas.canvas.height, animCanvas.canvas.width) * 0.002 * bassAvg;
 
             let trebArr = data.slice(256, 700);
             let trebAvg = 0;
@@ -180,18 +180,34 @@ class AudioVisGenerator {
     animateElement(animElement) {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
-            if (animCanvas.canvasType === "bar") {
-                barDraw(this.audioData);
-            } else if (animCanvas.canvasType === "circle") {
-                circleDraw(this.audioData);
+            if (animElement.animationType === "undefined") {
+                continue
+            } else if (animElement.animationType === "vertical") {
+                vertAnim(this.audioData);
+            } else if (animElement.animationType === "horizontal") {
+                horiAnim(this.audioData);
             }
             requestAnimationFrame(animation.bind(this));
+        }
+
+        function vertAnim(data) {
+            data = Array.from(data)
+            let dataAvg = 0
+            for (let i = 0; i < data.length; i++) {
+                dataAvg += data[i]
+            }
+            dataAvg = dataAvg / data.length
+
+            const maxMoveAmount = this.animElement.animationParams[0]
+            this.animElement.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
         if (!this.isSetUp) {
             console.log("The audio visualiser hasn't been set up yet!")
             return
         }
+
+        requestAnimationFrame(animation.bind(this))
     }
 }
 
@@ -202,12 +218,22 @@ class AnimCanvas {
         this.canvasID = canvasID
         this.ctx = canvas.getContext("2d")
     }
+
+    setCanvasType(canvasType){
+        this.canvasType = canvasType
+    }
 }
 
 class AnimElement {
-    constructor (element, animationType, elementID) {
-        this.element = element,
-        this.animationType = animationType,
+    constructor (element, elementID, animationType, animationParams) {
+        this.element = element
+        this.animationType = animationType
+        this.animationParams = animationParams
         this.elementID = elementID
+    }
+
+    setAnimation(animationType, animationParams) {
+        this.animationType = animationType
+        this.animationParams = animationParams
     }
 }
