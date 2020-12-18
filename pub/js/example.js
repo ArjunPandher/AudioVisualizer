@@ -14,7 +14,7 @@ let hasBeenPlayed = false
 
 audioElement.onplay = () => {
     if (!hasBeenPlayed) {
-        audioGen.setUp().then(audioGen.animateAllCanvases)
+        await audioGen.setUp().then(audioGen.animateAllCanvases)
         hasBeenPlayed = true
     }
 }
