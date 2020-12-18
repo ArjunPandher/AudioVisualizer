@@ -271,7 +271,7 @@ class AudioVisGenerator {
             const diffblue = blue1 - blue2
             const diffgreen = green1 - green2
 
-            console.log("diffred = " + diffred + ", diffblue - " + diffblue)
+            console.log("diffred = " + diffred * dataAvg + ", diffblue - " + diffblue * dataAvg)
 
             animElement.element.style.color = 'rgb(' + Math.round(red1 + diffred * dataAvg) + ',' + Math.round(blue1 + diffblue * dataAvg) + ',' + Math.round(green1 + diffgreen * dataAvg) + ')'
         }
