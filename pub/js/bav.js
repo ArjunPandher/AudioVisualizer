@@ -180,6 +180,7 @@ class AudioVisGenerator {
     animateElement(animElement) {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
+            console.log("This is animating!")
             if (animElement.animationType === "vertical") {
                 vertAnim(this.audioData);
             } else if (animElement.animationType === "horizontal") {
@@ -198,7 +199,6 @@ class AudioVisGenerator {
 
             const maxMoveAmount = this.animElement.animationParams[0]
             this.animElement.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
-            console.log("This is animating!")
         }
 
         if (!this.isSetUp) {
