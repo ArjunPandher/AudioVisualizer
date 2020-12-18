@@ -198,6 +198,7 @@ class AudioVisGenerator {
 
             const maxMoveAmount = this.animElement.animationParams[0]
             this.animElement.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+            console.log("This is animating!")
         }
 
         if (!this.isSetUp) {
