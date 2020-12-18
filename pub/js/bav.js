@@ -17,7 +17,7 @@ class AudioVisGenerator {
         this.audioData = {} // Storing the audio data in an array of predefined size
 
         this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
-        this.animationTypes = ["vertical", "horizontal"] // The types of animations currently available to use
+        this.animationTypes = ["vertical", "horizontal", "rotation", "scaleX", "scaleY", "skewX", "skewY", "color", "backgroundColor"] // The types of animations currently available to use
         this.isSetUp = false // Whether the setUp() method has been called or not
     }
 
