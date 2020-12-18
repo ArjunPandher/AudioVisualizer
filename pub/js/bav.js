@@ -4,6 +4,8 @@ class AudioVisGenerator {
     constructor(audioPath, audioElementId) {
         this.canvases = []; // List of visualiser canvases
         this.canvasNum = 0; // Number of canvases currently created under this instance of the library
+        this.animElements = []; // List of visualiser elements
+        this.animNum = 0; // Number of elements currently assigned to be animated under this instance of the library
         this.audioPath = audioPath; // Location of the audio source
         this.audioElement = document.getElementById(audioElementId); // The actual HTML audio element
         
@@ -19,6 +21,7 @@ class AudioVisGenerator {
         this.audioCtx.resume()
 
         this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
+        this.animationTypes = [] // The types of animations currently available to use
     }
 
     // Creating an animated canvas and returning it
@@ -30,17 +33,63 @@ class AudioVisGenerator {
         const animCanvas = {
             canvas: canvas,
             canvasType: canvasType,
-            ctx: canvas.getContext("2d")
+            ctx: canvas.getContext("2d"),
+            canvasID: this.canvasNum
         }
         this.canvasNum = this.canvasNum + 1;
         this.canvases.push(animCanvas);
         return animCanvas
     }
 
+    // Adding an element to be animated
+    addElement(element, animationType) {
+        if (!this.animationTypes.includes(animationType)){
+            console.log("Invalid animation type!")
+            return
+        }
+        const animElement = {
+            element: element,
+            animationType: animationType,
+            elementID: this.animNum
+        }
+        this.animNum = this.animNum + 1;
+        this.animElements.push(animElement);
+        return animElement;
+    }
+
+    // Removing an animated canvas
+    removeCanvas(canvasID) {
+        for (let i = 0; i < this.canvases.length; i++) {
+            if (this.canvases[i].canvasID === canvasID) {
+                this.canvases.splice(i, 1)
+                return
+            }
+        }
+        console.log("Unable to find canvis with canvasID " + canvasID)
+    }
+
+    // Removing an animated element
+    removeElement(elementID) {
+        for (let i = 0; i < this.animElements.length; i++) {
+            if (this.animElements[i].elementID === elementID) {
+                this.animElements.splice(i, 1)
+                return
+            }
+        }
+        console.log("Unable to find element with elementID " + elementID)
+    }
+
     // animating all canvases 
     animateAllCanvases() {
         for (let i = 0; i < this.canvasNum; i++) {
             this.animateCanvas(this.canvases[i])
+        }
+    }
+
+    // animating all non-canvas elements in system
+    animateAllElements() {
+        for (let i = 0; i < this.animNum; i++) {
+            this.animateCanvas(this.animElements[i])
         }
     }
 
