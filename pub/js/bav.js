@@ -18,7 +18,6 @@ class AudioVisGenerator {
         this.source.connect(this.audioCtx.destination); // Connecting the audo context's destination to the source
 
         this.audioData = new Uint8Array(this.audioAnalyser.frequencyBinCount); // Storing the audio data in an array of predefined size
-        this.audioCtx.resume()
 
         this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
         this.animationTypes = [] // The types of animations currently available to use
