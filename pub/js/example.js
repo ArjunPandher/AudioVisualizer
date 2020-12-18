@@ -10,11 +10,11 @@ audioDiv.appendChild(barVis.canvas)
 audioDiv.appendChild(circleVis.canvas)
 
 const audioElement = document.getElementById("player")
-const hasBeenPlayed = false
+let hasBeenPlayed = false
 
 audioElement.onplay = () => {
     if (!hasBeenPlayed) {
-        audioGen.setUp()
+        audioGen.setUp().then(audioGen.animateAllCanvases())
+        hasBeenPlayed = true
     }
-    audioGen.animateAllCanvases()
 }

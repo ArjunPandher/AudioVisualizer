@@ -22,7 +22,7 @@ class AudioVisGenerator {
     }
 
     // Must be called upon user input.
-    setUp() {
+    async setUp() {
         this.audioCtx = new AudioContext(); // The audio context of the audio source
         this.audioAnalyser = this.audioCtx.createAnalyser(); // The object responsible for analzying the audio being played
         this.audioAnalyser.fftSize = 2 ** 11; // Setting the analyser's array input size
