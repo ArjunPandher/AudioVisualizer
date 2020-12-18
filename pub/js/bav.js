@@ -180,16 +180,8 @@ class AudioVisGenerator {
     animateElement(animElement) {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
-            if (animElement.animationType === "vertical") {
-                vertAnim(this.audioData);
-            } else if (animElement.animationType === "horizontal") {
-                horiAnim(this.audioData);
-            }
-            requestAnimationFrame(animation.bind(this));
-        }
 
-        function vertAnim(data) {
-            data = Array.from(data)
+            let data = Array.from(this.audioData)
             let dataAvg = 0
             for (let i = 0; i < data.length; i++) {
                 dataAvg += data[i]
@@ -197,8 +189,107 @@ class AudioVisGenerator {
             dataAvg = dataAvg / data.length
             dataAvg = dataAvg / 100
 
+            switch (animElement.animationType) {
+                case "vertical":
+                    vertAnim(dataAvg);
+                    break;
+                case "horizontal":
+                    horiAnim(dataAvg);
+                    break;
+                case "rotation":
+                    rotateAnim(dataAvg);
+                    break;
+                case "scaleX":
+                    scaleXAnim(dataAvg);
+                    break;
+                case "scaleY":
+                    scaleYAnim(dataAvg);
+                    break;
+                case "skewX":
+                    skewXAnim(dataAvg);
+                    break;
+                case "skewY":
+                    skewYAnim(dataAvg);
+                    break;
+                case "color":
+                    colorAnim(dataAvg);
+                    break;
+                case "backgroundColor":
+                    backgroundColorAnim(dataAvg);
+                    break;
+            }
+            requestAnimationFrame(animation.bind(this));
+        }
+
+        function vertAnim(dataAvg) {
             const maxMoveAmount = animElement.animationParams[0]
             animElement.element.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+        }
+
+        function horiAnim(dataAvg) {
+            const maxMoveAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+        }
+
+        function rotateAnim(dataAvg) {
+            const maxRotateAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
+        }
+
+        function scaleXAnim(dataAvg){
+            const maxScaleAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'scaleX(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + 'deg)'
+        }
+
+        function scaleYAnim(dataAvg){
+            const maxScaleAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + 'deg)'
+        }
+
+        function skewXAnim(dataAvg){
+            const maxSkewAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + 'deg)'
+        }
+
+        function skewYAnim(dataAvg){
+            const maxSkewAmount = animElement.animationParams[0]
+            animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + 'deg)'
+        }
+
+        function colorAnim(dataAvg){
+            const color1 = animElement.animationParams[0]
+            const red1 = color1.red
+            const blue1 = color1.blue
+            const green1 = color1.green
+
+            const color2 = animElement.animationParams[1]
+            const red2 = color2.red
+            const blue2 = color2.blue
+            const green2 = color2.green
+
+            const diffred = red1 - red2
+            const diffblue = blue1 - blue2
+            const diffgreen = green1 - green2
+
+            animElement.element.style.color = 'rgb(' + Math.round(red1 + diffred * dataAvg) + ',' + Math.round(blue1 + diffblue * dataAvg) + ',' + Math.round(green1 + diffgreen * dataAvg) + ')'
+        }
+
+        function backgroundColorAnim(dataAvg){
+            const color1 = animElement.animationParams[0]
+            const red1 = color1.red
+            const blue1 = color1.blue
+            const green1 = color1.green
+
+            const color2 = animElement.animationParams[1]
+            const red2 = color2.red
+            const blue2 = color2.blue
+            const green2 = color2.green
+
+            const diffred = red1 - red2
+            const diffblue = blue1 - blue2
+            const diffgreen = green1 - green2
+
+            animElement.element.style.backgroundColor = 'rgb(' + Math.round(red1 + diffred * dataAvg) + ',' + Math.round(blue1 + diffblue * dataAvg) + ',' + Math.round(green1 + diffgreen * dataAvg) + ')'
         }
 
         if (!this.isSetUp) {

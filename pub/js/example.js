@@ -1,7 +1,7 @@
 const audioGen = new AudioVisGenerator("https://quiet-dawn-92680.herokuapp.com/God%20Is%20Perfect.mp3", "player")
 let barVis = document.createElement("CANVAS")
 let circleVis = document.createElement("CANVAS")
-let vertTextDiv = document.getElementById("description")
+let colorTextDiv = document.getElementById("description")
 
 let audioDiv = document.getElementById("audioVisDiv")
 
@@ -10,7 +10,7 @@ circleVis = audioGen.addCanvas(circleVis, "circle")
 audioDiv.appendChild(barVis.canvas)
 audioDiv.appendChild(circleVis.canvas)
 
-vertTextDiv = audioGen.addElement(vertTextDiv, "vertical", [100])
+colorTextDiv = audioGen.addElement(colorTextDiv, "vertical", [{red: 255, blue: 0, green: 0},{red: 0, blue: 255, green: 0}])
 
 const audioElement = document.getElementById("player")
 let hasBeenPlayed = false
