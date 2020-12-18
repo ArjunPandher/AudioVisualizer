@@ -12,6 +12,6 @@ audioDiv.appendChild(circleVis.canvas)
 const audioElement = document.getElementById("player")
 
 audioElement.onplay = () => {
-    audioGen.resumeAudioContext()
+    audioGen.setUp()
     audioGen.animateAllCanvases()
 }
