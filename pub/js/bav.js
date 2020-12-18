@@ -30,12 +30,7 @@ class AudioVisGenerator {
             console.log("Invalid canvas type!")
             return
         }
-        const animCanvas = {
-            canvas: canvas,
-            canvasType: canvasType,
-            ctx: canvas.getContext("2d"),
-            canvasID: this.canvasNum
-        }
+        const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum)
         this.canvasNum = this.canvasNum + 1;
         this.canvases.push(animCanvas);
         return animCanvas
@@ -47,11 +42,7 @@ class AudioVisGenerator {
             console.log("Invalid animation type!")
             return
         }
-        const animElement = {
-            element: element,
-            animationType: animationType,
-            elementID: this.animNum
-        }
+        const animElement = new AnimElement(element, animationType, elementID)
         this.animNum = this.animNum + 1;
         this.animElements.push(animElement);
         return animElement;
@@ -89,7 +80,7 @@ class AudioVisGenerator {
     // animating all non-canvas elements in system
     animateAllElements() {
         for (let i = 0; i < this.animNum; i++) {
-            this.animateCanvas(this.animElements[i])
+            this.animateElement(this.animElements[i])
         }
     }
 
@@ -159,5 +150,35 @@ class AudioVisGenerator {
 
         requestAnimationFrame(animation.bind(this));
     }
+
+    // animating the element every frame
+    // make private somehow or not idk
+    animateElement(animElement) {
+        function animation() {
+            this.audioAnalyser.getByteFrequencyData(this.audioData);
+            if (animCanvas.canvasType === "bar") {
+                barDraw(this.audioData);
+            } else if (animCanvas.canvasType === "circle") {
+                circleDraw(this.audioData);
+            }
+            requestAnimationFrame(animation.bind(this));
+        }
+    }
 }
 
+class AnimCanvas {
+    constructor (canvas, canvasType, canvasID) {
+        this.canvas = canvas
+        this.canvasType = canvasType
+        this.canvasID = canvasID
+        this.ctx = canvas.getContext("2d")
+    }
+}
+
+class AnimElement {
+    constructor (element, animationType, elementID) {
+        this.element = element,
+        this.animationType = animationType,
+        this.elementID = elementID
+    }
+}
