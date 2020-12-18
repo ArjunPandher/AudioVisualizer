@@ -16,6 +16,7 @@ audioElement.onplay = () => {
     if (!hasBeenPlayed) {
         audioGen.setUp()
         hasBeenPlayed = true
+        audioGen.animateAllCanvases()
     }
-    audioGen.animateAllCanvases()
+    
 }
