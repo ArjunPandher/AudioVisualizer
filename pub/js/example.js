@@ -10,7 +10,7 @@ circleVis = audioGen.addCanvas(circleVis, "circle")
 audioDiv.appendChild(barVis.canvas)
 audioDiv.appendChild(circleVis.canvas)
 
-colorTextDiv = audioGen.addElement(colorTextDiv, "vertical", [{red: 255, blue: 0, green: 0},{red: 0, blue: 255, green: 0}])
+colorTextDiv = audioGen.addElement(colorTextDiv, "color", [{red: 255, blue: 0, green: 0},{red: 0, blue: 255, green: 0}])
 
 const audioElement = document.getElementById("player")
 let hasBeenPlayed = false
