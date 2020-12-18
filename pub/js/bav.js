@@ -48,12 +48,12 @@ class AudioVisGenerator {
     }
 
     // Adding an element to be animated
-    addElement(element, animationType) {
+    addElement(element, animationType, animationParams) {
         if (!this.animationTypes.includes(animationType)){
             console.log("Invalid animation type!")
             return
         }
-        const animElement = new AnimElement(element, animationType, this.animNum)
+        const animElement = new AnimElement(element, this.animNum, animationType, animationParams)
         this.animNum = this.animNum + 1;
         this.animElements.push(animElement);
         return animElement;
