@@ -181,7 +181,6 @@ class AudioVisGenerator {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
             if (animElement.animationType === "vertical") {
-                console.log("This is animating!")
                 vertAnim(this.audioData);
             } else if (animElement.animationType === "horizontal") {
                 horiAnim(this.audioData);
@@ -197,8 +196,8 @@ class AudioVisGenerator {
             }
             dataAvg = dataAvg / data.length
 
-            const maxMoveAmount = this.animElement.animationParams[0]
-            this.animElement.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+            const maxMoveAmount = animElement.animationParams[0]
+            animElement.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
         if (!this.isSetUp) {
