@@ -17,7 +17,7 @@ class AudioVisGenerator {
         this.audioData = {} // Storing the audio data in an array of predefined size
 
         this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
-        this.animationTypes = [] // The types of animations currently available to use
+        this.animationTypes = ["vertical", "horizontal"] // The types of animations currently available to use
         this.isSetUp = false // Whether the setUp() method has been called or not
     }
 
@@ -53,7 +53,7 @@ class AudioVisGenerator {
             console.log("Invalid animation type!")
             return
         }
-        const animElement = new AnimElement(element, animationType, elementID)
+        const animElement = new AnimElement(element, animationType, this.animNum)
         this.animNum = this.animNum + 1;
         this.animElements.push(animElement);
         return animElement;

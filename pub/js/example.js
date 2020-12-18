@@ -1,4 +1,3 @@
-import { AudioVisGenerator } from "bav.js"
 const audioGen = new AudioVisGenerator("https://quiet-dawn-92680.herokuapp.com/God%20Is%20Perfect.mp3", "player")
 let barVis = document.createElement("CANVAS")
 let circleVis = document.createElement("CANVAS")
@@ -11,7 +10,7 @@ circleVis = audioGen.addCanvas(circleVis, "circle")
 audioDiv.appendChild(barVis.canvas)
 audioDiv.appendChild(circleVis.canvas)
 
-audioDiv = audioGen.addElement(audioDiv, "vertical", [10])
+vertTextDiv = audioGen.addElement(audioDiv, "vertical", [10])
 
 const audioElement = document.getElementById("player")
 let hasBeenPlayed = false
