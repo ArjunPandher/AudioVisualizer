@@ -195,7 +195,7 @@ class AudioVisGenerator {
                 dataAvg += data[i]
             }
             dataAvg = dataAvg / data.length
-            console.log(dataAvg)
+            dataAvg = dataAvg / 100
 
             const maxMoveAmount = animElement.animationParams[0]
             animElement.element.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
