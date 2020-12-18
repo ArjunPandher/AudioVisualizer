@@ -24,6 +24,10 @@ class AudioVisGenerator {
         this.animationTypes = [] // The types of animations currently available to use
     }
 
+    resumeAudioContext() {
+        this.audioCtx.resume
+    }
+
     // Creating an animated canvas and returning it
     addCanvas(canvas, canvasType) {
         if (!this.canvasTypes.includes(canvasType)) {

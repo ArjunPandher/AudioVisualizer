@@ -5,12 +5,13 @@ let circleVis = document.createElement("CANVAS")
 const audioDiv = document.getElementById("audioVisDiv")
 
 barVis = audioGen.addCanvas(barVis, "bar")
-cicleVis = audioGen.addCanvas(circleVis, "circle")
+circleVis = audioGen.addCanvas(circleVis, "circle")
 audioDiv.appendChild(barVis.canvas)
 audioDiv.appendChild(circleVis.canvas)
 
 const audioElement = document.getElementById("player")
 
-audioElement.onplay = ()=>{
+audioElement.onplay = () => {
+    audioGen.audioCtx.resume
     audioGen.animateAllCanvases()
 }
