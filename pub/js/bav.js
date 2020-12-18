@@ -9,6 +9,20 @@ class AudioVisGenerator {
         this.audioPath = audioPath; // Location of the audio source
         this.audioElement = document.getElementById(audioElementId); // The actual HTML audio element
         
+        this.audioCtx = {} // The audio context of the audio source
+        this.audioAnalyser = {} // The object responsible for analzying the audio being played
+
+        this.source = {} // The direct source of the audio
+
+        this.audioData = {} // Storing the audio data in an array of predefined size
+
+        this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
+        this.animationTypes = [] // The types of animations currently available to use
+        this.isSetUp = false // Whether the setUp() method has been called or not
+    }
+
+    // Must be called upon user input.
+    setUp() {
         this.audioCtx = new AudioContext(); // The audio context of the audio source
         this.audioAnalyser = this.audioCtx.createAnalyser(); // The object responsible for analzying the audio being played
         this.audioAnalyser.fftSize = 2 ** 11; // Setting the analyser's array input size
@@ -18,13 +32,7 @@ class AudioVisGenerator {
         this.source.connect(this.audioCtx.destination); // Connecting the audo context's destination to the source
 
         this.audioData = new Uint8Array(this.audioAnalyser.frequencyBinCount); // Storing the audio data in an array of predefined size
-
-        this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
-        this.animationTypes = [] // The types of animations currently available to use
-    }
-
-    resumeAudioContext() {
-        this.audioCtx.resume
+        this.isSetUp = false
     }
 
     // Creating an animated canvas and returning it
@@ -75,6 +83,10 @@ class AudioVisGenerator {
 
     // animating all canvases 
     animateAllCanvases() {
+        if (!this.isSetUp) {
+            console.log("The audio visualiser hasn't been set up yet!")
+            return
+        }
         for (let i = 0; i < this.canvasNum; i++) {
             this.animateCanvas(this.canvases[i])
         }
@@ -82,6 +94,10 @@ class AudioVisGenerator {
 
     // animating all non-canvas elements in system
     animateAllElements() {
+        if (!this.isSetUp) {
+            console.log("The audio visualiser hasn't been set up yet!")
+            return
+        }
         for (let i = 0; i < this.animNum; i++) {
             this.animateElement(this.animElements[i])
         }
@@ -151,6 +167,11 @@ class AudioVisGenerator {
             animCanvas.ctx.closePath();
         }
 
+        if (!this.isSetUp) {
+            console.log("The audio visualiser hasn't been set up yet!")
+            return
+        }
+
         requestAnimationFrame(animation.bind(this));
     }
 
@@ -165,6 +186,11 @@ class AudioVisGenerator {
                 circleDraw(this.audioData);
             }
             requestAnimationFrame(animation.bind(this));
+        }
+
+        if (!this.isSetUp) {
+            console.log("The audio visualiser hasn't been set up yet!")
+            return
         }
     }
 }
