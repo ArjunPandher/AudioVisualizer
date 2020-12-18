@@ -180,9 +180,7 @@ class AudioVisGenerator {
     animateElement(animElement) {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
-            if (animElement.animationType === "undefined") {
-                continue
-            } else if (animElement.animationType === "vertical") {
+            if (animElement.animationType === "vertical") {
                 vertAnim(this.audioData);
             } else if (animElement.animationType === "horizontal") {
                 horiAnim(this.audioData);
