@@ -1,28 +1,37 @@
-img {
-    width: 600px;
-    height: 600px;
-}
-
 .header {
-    display: flex;
+    display: block;
     text-align: left;
     margin: auto;
 }
 
-#description {
-    width: 800px;
-    display: flex;
+.mainDiv {
+    width: 1000px;
+    display: block;
     text-align: left;
     margin: auto;
 }
 
-#audioPlayer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0px;
+    background-color: #FFF2EB;
 }
 
-#audioVisDiv {
+.description {
+    line-height: 175%;
+}
+
+.audioPlayer {
+    margin: auto;
+    width: 300px;
+}
+
+.audioSubtitle {
+    margin: auto;
+    width: 231px;
+}
+
+.audioVisDiv {
     display: flex;
     justify-content: center;
     align-items: left;
@@ -33,4 +42,9 @@ img {
     display: flex;
     text-align: left;
     margin: auto;
+}
+
+#canvas-bar {
+    width: 1000px;
+    height: 300px;
 }

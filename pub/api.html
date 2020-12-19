@@ -31,10 +31,10 @@
                 <h3>Usage</h3>
                 Create a new AudioVisGenerator using
                 <code>
-                    const audioVisGen = new AudioVisGenerator(audioPath, audioElementId)
+                    const audioVisGen = new AudioVisGenerator(audioElementId)
                 </code>
-                Where <code>audioPath</code> is a url to an mp3 file, and <code>audioElementId</code> is the ID of the audio player you are using.
-                Make sure to use <code>AudioVisGenerator.setUp</code> on some form of user input before calling any of its animate methods. This is mandatory for most modern browsers.
+                Where <code>audioElementId</code> is the ID of the audio player you are using.
+                Make sure to use <code>AudioVisGenerator.setUp()</code> on some form of user input before calling any of its animate methods. This is mandatory for most modern browsers.
                 You can instantiate multiple AudioVisGenerators for different audio sources and different audio players.
             </div>
 

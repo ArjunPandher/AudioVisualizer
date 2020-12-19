@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, '/pub')))
 // Let's make a route for an HTTP GET request to the 
 // 'root' of our app (i.e. top level domain '/')
 
-app.get('/', (req, res) => {
+app.get('/examples', (req, res) => {
 	// sending a string
 	//res.send('This should be the root route!')
 
@@ -29,9 +29,27 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '/pub/example.html'))
 })
 
+app.get('/api', (req, res) => {
+	// sending a string
+	//res.send('This should be the root route!')
+
+	//sending some HTML
+	res.sendFile(path.join(__dirname, '/pub/api.html'))
+})
+
 app.get('/God Is Perfect.mp3', (req, res) => {
 	// sending an mp3 file
 	res.sendFile(path.join(__dirname, '/pub/God Is Perfect.mp3'))
+})
+
+app.get('/GOAT.mp3', (req, res) => {
+	// sending an mp3 file
+	res.sendFile(path.join(__dirname, '/pub/GOAT.mp3'))
+})
+
+app.get('/Im God.mp3', (req, res) => {
+	// sending an mp3 file
+	res.sendFile(path.join(__dirname, '/pub/Im God.mp3'))
 })
 
 // Error codes

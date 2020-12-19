@@ -1,27 +1,12 @@
-const audioGen = new AudioVisGenerator("https://quiet-dawn-92680.herokuapp.com/God%20Is%20Perfect.mp3", "player")
-let barVis = document.createElement("CANVAS")
-let circleVis = document.createElement("CANVAS")
-let colorTextDiv = document.getElementById("description")
+const audioGen1 = new AudioVisGenerator("player1")
+const audioGen2 = new AudioVisGenerator("player2")
+const audioGen3 = new AudioVisGenerator("player3")
 
-let audioDiv = document.getElementById("audioVisDiv")
+const barCanvas = document.getElementById("canvas-bar")
+const barCanvasVis = audioGen1.addCanvas("bar", "ffb4a2", "e5989b")
 
-barVis = audioGen.addCanvas(barVis, "bar", "#ffb4a2", "#b5838d")
-circleVis = audioGen.addCanvas(circleVis, "circle", "#ffb4a2", "#b5838d")
-audioDiv.appendChild(barVis.canvas)
-audioDiv.appendChild(circleVis.canvas)
-
-colorTextDiv = audioGen.addElement(colorTextDiv, "color", [{red: 255, blue: 0, green: 0},{red: 0, blue: 255, green: 0}])
-colorTextDiv.makeDraggable()
-
-const audioElement = document.getElementById("player")
-let hasBeenPlayed = false
-
-audioElement.onplay = () => {
-    if (!hasBeenPlayed) {
-        audioGen.setUp()
-        hasBeenPlayed = true
-        audioGen.animateAllCanvases()
-        audioGen.animateAllElements()
-    }
-    
+const player1 = document.getElementById("player1")
+player1.onplay = () => {
+    audioGen1.setUp()
+    audioGen1.animateAllCanvases()
 }

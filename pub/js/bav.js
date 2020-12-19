@@ -1,12 +1,11 @@
 "use strict";
 
 class AudioVisGenerator {
-    constructor(audioPath, audioElementId) {
+    constructor(audioElementId) {
         this.canvases = []; // List of visualiser canvases
         this.canvasNum = 0; // Number of canvases currently created under this instance of the library
         this.animElements = []; // List of visualiser elements
         this.animNum = 0; // Number of elements currently assigned to be animated under this instance of the library
-        this.audioPath = audioPath; // Location of the audio source
         this.audioElement = document.getElementById(audioElementId); // The actual HTML audio element
         
         this.audioCtx = {} // The audio context of the audio source

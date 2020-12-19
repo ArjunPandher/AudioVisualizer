@@ -2,34 +2,38 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Alfredo out now!</title>
+        <title>Arjun's Audio Visualiser</title>
         <link rel="stylesheet" type="text/css" href="example.css">
         <script src="js/bav.js"></script>
     </head>
 
     <body>
-        <div class="header">
-            <h1>Arjun's Audio Visualiser Documentation</h1>
-        </div>
+        <div class="mainDiv">
+            <div class="header">
+                <h1>Examples</h1>
+            </div>
 
-        <div class="description" id="description">
-            <h2>Introduction</h2> <br>
-            This is an audio visualiser library, making it easy for developers to quickly add audio-reactive components to their website.
-        </div>
+            <div class="description">
+                <h2>Basic Audio Visualiser Canvas</h2>
+                A basic canvas that displays an animation that syncs up to the music being played.
+            </div>
 
-        <div id="audioPlayer">
-            <audio controls id="player">
-                <source src="https://quiet-dawn-92680.herokuapp.com/God%20Is%20Perfect.mp3" type="audio/mp3">
-            </audio>
-        </div>
+            <div class="audioPlayer">
+                <audio controls id="player1">
+                    <source src="https://quiet-dawn-92680.herokuapp.com/Im%20God.mp3" type="audio/mp3">
+                </audio> <br>
+                <div class="audioSubtitle">Song Name: I'm God - Clams Casino</div>
+            </div>
 
-        <div id="audioVisDiv">
-        </div>
+            <div id="audioVisDiv">
+                <canvas id="canvas-bar"></canvas>
+            </div>
 
-        <div class="footer">
-            Now Grammy nominated, the only question left to ask is how in the world did this get nominated, but The Weeknd got completely snubbed lmfao
-        </div>
+            <div class="description">
+                
+            </div>
 
-        <script src="js/example.js"></script>
+            <script src="js/example.js"></script>
+        </div>
     </body>
 </html>
