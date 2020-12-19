@@ -128,14 +128,15 @@ class AudioVisGenerator {
             // Setting the space between each bar
             let space = animCanvas.canvas.width / data.length;
             // Changing the size of each bar in the canvas based on the audio data
+            animCanvas.ctx.lineWidth = space
             data.forEach((value, index) => {
                 animCanvas.ctx.beginPath();
                 animCanvas.ctx.moveTo(space * index, animCanvas.canvas.height);
                 animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - value);
                 animCanvas.ctx.stroke();
             });
+            
             animCanvas.ctx.strokeStyle = animCanvas.primaryColor
-            animCanvas.ctx.fillStyle = animCanvas.secondaryColor
         }
 
         function circleDraw(data) {
