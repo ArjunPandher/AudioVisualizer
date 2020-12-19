@@ -50,11 +50,12 @@ class AudioVisGenerator {
 
     // Adding an element to be animated
     addElement(element, animationType, animationParams) {
-        animationType = this.animationTypes[animationType]
-        if (!this.animationTypes.includes(animationType)){
-            console.log("Invalid animation type!")
+        if (!animationType in this.animationTypes) {
+            console.log("Invalid canvas type!")
             return
         }
+        animationType = this.animationTypes[animationType]
+        
         const animElement = new AnimElement(element, this.animNum, animationType, animationParams)
         this.animNum = this.animNum + 1;
         this.animElements.push(animElement);

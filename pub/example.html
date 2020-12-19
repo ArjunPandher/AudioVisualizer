@@ -4,7 +4,9 @@
         <meta charset="utf-8">
         <title>Arjun's Audio Visualiser</title>
         <link rel="stylesheet" type="text/css" href="example.css">
-        <script src="js/bav.js"></script>
+        <script defer src="js/bav.js"></script>
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script defer src="js/example.js"></script>
     </head>
 
     <body>
@@ -29,11 +31,107 @@
                 <canvas id="canvas-bar" width="1000" height="300"></canvas>
             </div>
 
-            <div class="description">
-                
+            <div class="codeDiv">
+                <ul class="tabs">
+                    <li class="active" id="js-tab1"><span class="tabTitle">JS</span></li>
+                    <li id="html-tab1"><span class="tabTitle">HTML</span></li>
+                    <li id="css-tab1"><span class="tabTitle">CSS</span></li>
+                </ul>
+                <div>
+                    <code id="js-code1" class="active">
+                        const audioVisGen = new AudioVisGenerator("player") <br>
+                        const barCanvas = document.getElementById("canvas-bar") <br>
+                        barCanvas.width = "1000" <br>
+                        barCanvas.height = "300" <br>
+                        const barCanvasVis = audioVisGen.addCanvas(barCanvas, 0, "#000000", "#ffb4a2") <br>
+                        const player1 = document.getElementById("player1") <br>
+                        let playerHasBeenPlayed = false <br>
+                        player1.onplay = () => { <br>
+                        &emsp;    if (!playerHasBeenPlayed) { <br>
+                        &emsp;&emsp;    audioVisGen.setUp() <br>
+                        &emsp;&emsp;    playerHasBeenPlayed = true <br>
+                        &emsp;} <br>
+                        &emsp;audioVisGen.animateAllCanvases() <br>
+                        }
+                    </code>
+                </div>
+                <div>
+                    <code id="html-code1">
+                        &lt;audio controls id="player1"> <br>
+                        &emsp;&lt;source src="Im%20God.mp3" type="audio/mp3"> <br>
+                        &lt;/audio> <br>
+                        &lt;div id="audioVisDiv"> <br>
+                        &emsp;&lt;canvas id="canvas-bar" width="1000" height="300">&lt;/canvas> <br>
+                        &lt;/div>
+                    </code>
+                </div>
+                <div>
+                    <code id="css-code1">
+                        #canvas-bar { <br>
+                        &emsp;    background-color: #ffb4a2; <br>
+                        }
+                    </code>
+                </div>
             </div>
 
-            <script src="js/example.js"></script>
+            <div class="description">
+                <h2>Basic Audio Visualiser Element</h2>
+                A basic element that changes itself to sync up with the music being played.
+            </div>
+
+            <div class="audioPlayer">
+                <audio controls id="player2">
+                    <source src="https://quiet-dawn-92680.herokuapp.com/GOAT.mp3" type="audio/mp3">
+                </audio> <br>
+                <div class="audioSubtitle">Song Name: G.O.A.T. - Polyphia</div>
+            </div>
+
+            <div id="audioVisDiv">
+                <div id="audioVisElement1"><h1>Currently Playing: G.O.A.T. - Polyphia</h1></div>
+            </div>
+
+            <div class="codeDiv">
+                <ul class="tabs">
+                    <li class="active" id="js-tab2"><span class="tabTitle">JS</span></li>
+                    <li id="html-tab2"><span class="tabTitle">HTML</span></li>
+                    <li id="css-tab2"><span class="tabTitle">CSS</span></li>
+                </ul>
+                <div>
+                    <code id="js-code2" class="active">
+                        const audioVisGen = new AudioVisGenerator("player") <br>
+                        const barCanvas = document.getElementById("canvas-bar") <br>
+                        barCanvas.width = "1000" <br>
+                        barCanvas.height = "300" <br>
+                        const barCanvasVis = audioVisGen.addCanvas(barCanvas, 0, "#000000", "#ffb4a2") <br>
+                        const player1 = document.getElementById("player1") <br>
+                        let playerHasBeenPlayed = false <br>
+                        player1.onplay = () => { <br>
+                        &emsp;    if (!playerHasBeenPlayed) { <br>
+                        &emsp;&emsp;    audioVisGen.setUp() <br>
+                        &emsp;&emsp;    playerHasBeenPlayed = true <br>
+                        &emsp;} <br>
+                        &emsp;audioVisGen.animateAllCanvases() <br>
+                        }
+                    </code>
+                </div>
+                <div>
+                    <code id="html-code2">
+                        &lt;audio controls id="player1"> <br>
+                        &emsp;&lt;source src="Im%20God.mp3" type="audio/mp3"> <br>
+                        &lt;/audio> <br>
+                        &lt;div id="audioVisDiv"> <br>
+                        &emsp;&lt;canvas id="canvas-bar" width="1000" height="300">&lt;/canvas> <br>
+                        &lt;/div>
+                    </code>
+                </div>
+                <div>
+                    <code id="css-code2">
+                        #canvas-bar { <br>
+                        &emsp;    background-color: #ffb4a2; <br>
+                        }
+                    </code>
+                </div>
+            </div>
         </div>
     </body>
 </html>

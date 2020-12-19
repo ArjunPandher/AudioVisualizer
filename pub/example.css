@@ -45,6 +45,48 @@ body {
 }
 
 #canvas-bar {
-    margin: auto;
     background-color: #ffb4a2;
 }
+
+#audioVisElement1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 50%;
+    margin: auto;
+}
+
+code {
+    background-color: #ffcdb2;
+    width: 1000px;
+    border-radius: 2px;
+    border-width: 2px;
+    padding: 4px;
+    display: none;
+    font-size: larger;
+}
+
+ul {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    float: left;
+    background-color:#FFF2EB;
+}
+
+.active {
+    display: inline-block;
+    background-color:#ffcdb2;;
+}
+
+code .active {
+    display: block;
+}
+
+.tabTitle {
+    margin: 10px;
+    font-size: larger;
+}
+
