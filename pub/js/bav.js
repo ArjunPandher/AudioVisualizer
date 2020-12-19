@@ -131,12 +131,12 @@ class AudioVisGenerator {
             animCanvas.ctx.lineWidth = space
             data.forEach((value, index) => {
                 animCanvas.ctx.beginPath();
+                animCanvas.ctx.strokeStyle = animCanvas.primaryColor;
                 animCanvas.ctx.moveTo(space * index, animCanvas.canvas.height);
                 animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - value);
+                animCanvas.ctx.lineWidth = space
                 animCanvas.ctx.stroke();
             });
-            
-            animCanvas.ctx.strokeStyle = animCanvas.primaryColor
         }
 
         function circleDraw(data) {
