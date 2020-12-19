@@ -19,6 +19,7 @@ player1.onplay = () => {
     }
     audioGen1.animateAllCanvases()
     audioGen2.animateAllElements()
+    console.log("bruh")
 }
 
 $("li").on("click", function() {
