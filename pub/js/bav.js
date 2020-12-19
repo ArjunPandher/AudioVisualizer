@@ -123,7 +123,7 @@ class AudioVisGenerator {
         function barDraw(data) {
             // Translating our data fron a Uint8Array to a regular array
             data = Array.from(data);
-            data = data.splice
+            data = data.splice(-200, 200)
             // Clearing the rectangle every time this is called
             animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
             // Setting the space between each bar
