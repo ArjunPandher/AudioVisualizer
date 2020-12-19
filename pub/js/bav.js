@@ -42,7 +42,6 @@ class AudioVisGenerator {
         }
         canvasType = this.canvasTypes[canvasType]
         
-        console.log(primaryColor)
         const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum, primaryColor, secondaryColor)
         this.canvasNum = this.canvasNum + 1;
         this.canvases.push(animCanvas);
