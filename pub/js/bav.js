@@ -36,12 +36,12 @@ class AudioVisGenerator {
     }
 
     // Creating an animated canvas and returning it
-    addCanvas(canvas, canvasType) {
+    addCanvas(canvas, canvasType, primaryColor, secondaryColor) {
         if (!this.canvasTypes.includes(canvasType)) {
             console.log("Invalid canvas type!")
             return
         }
-        const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum)
+        const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum, primaryColor, secondaryColor)
         this.canvasNum = this.canvasNum + 1;
         this.canvases.push(animCanvas);
         return animCanvas
@@ -63,6 +63,7 @@ class AudioVisGenerator {
     removeCanvas(canvasID) {
         for (let i = 0; i < this.canvases.length; i++) {
             if (this.canvases[i].canvasID === canvasID) {
+                this.canvases[i].removeCanvas()
                 this.canvases.splice(i, 1)
                 return
             }
@@ -74,6 +75,7 @@ class AudioVisGenerator {
     removeElement(elementID) {
         for (let i = 0; i < this.animElements.length; i++) {
             if (this.animElements[i].elementID === elementID) {
+                this.animElements.removeElement();
                 this.animElements.splice(i, 1)
                 return
             }
@@ -130,6 +132,8 @@ class AudioVisGenerator {
                 animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - value);
                 animCanvas.ctx.stroke();
             });
+            animCanvas.ctx.strokeStyle = animCanvas.primaryColor
+            animCanvas.ctx.fillStyle = animCanvas.secondaryColor
         }
 
         function circleDraw(data) {
@@ -156,13 +160,13 @@ class AudioVisGenerator {
             animCanvas.ctx.beginPath();
             animCanvas.ctx.arc(animCanvas.canvas.width / 2, animCanvas.canvas.height / 2, bassRad, 0, Math.PI * 2, false);
             animCanvas.ctx.closePath();
-            animCanvas.ctx.fillStyle = "#7CC6FE";
+            animCanvas.ctx.fillStyle = animCanvas.primaryColor;
             animCanvas.ctx.fill();
 
             animCanvas.ctx.beginPath();
             animCanvas.ctx.arc(animCanvas.canvas.width / 2, animCanvas.canvas.height / 2, trebRad, 0, Math.PI * 2, false);
             animCanvas.ctx.lineWidth = 4;
-            animCanvas.ctx.strokeStyle = "#CCD5FF";
+            animCanvas.ctx.strokeStyle = animCanvas.secondaryColor;
             animCanvas.ctx.stroke();
             animCanvas.ctx.closePath();
         }
@@ -289,7 +293,7 @@ class AudioVisGenerator {
             const diffblue = blue1 - blue2
             const diffgreen = green1 - green2
 
-            animElement.element.style.backgroundColor = 'rgb(' + Math.round(red1 + diffred * dataAvg) + ',' + Math.round(blue1 + diffblue * dataAvg) + ',' + Math.round(green1 + diffgreen * dataAvg) + ')'
+            animElement.element.style.backgroundColor = 'rgb(' + Math.round(red1 - diffred * dataAvg) + ',' + Math.round(blue1 - diffblue * dataAvg) + ',' + Math.round(green1 - diffgreen * dataAvg) + ')'
         }
 
         if (!this.isSetUp) {
@@ -302,28 +306,186 @@ class AudioVisGenerator {
 }
 
 class AnimCanvas {
-    constructor (canvas, canvasType, canvasID) {
+    constructor (canvas, canvasType, canvasID, primaryColor, secondaryColor) {
         this.canvas = canvas
         this.canvasType = canvasType
         this.canvasID = canvasID
         this.ctx = canvas.getContext("2d")
+        this.isHidden = false
+        this.isDraggable = false
+        this.defaultDisplay = this.canvas.style.display // note that if this changes after object is created, one must update this property
+        this.primaryColor = primaryColor
+        this.secondaryColor = secondaryColor
     }
 
     setCanvasType(canvasType){
         this.canvasType = canvasType
     }
+
+    removeCanvas () {
+        this.canvas.remove()
+    }
+
+    hideCanvas () {
+        if (this.isHidden) {
+            console.log("Canvas" + this.canvas.id + " is already hidden!")
+            return
+        }
+        this.element.style.display = "none"
+        this.isHidden = true
+    }
+
+    showCanvas () {
+        if (!this.isHidden) {
+            console.log("Canvas " + this.canvas.id + " is already visible!")
+            return
+        }
+        this.element.style.display = this.defaultDisplay
+        this.isHidden = false
+    }
+
+    makeDraggable () {
+        if (this.isDraggable) { 
+            console.log("Canvas " + this.canvas.id + " is already draggable!")
+            return
+        }
+        if (getComputedStyle(this.canvas).position !== "absolute") {
+            console.log("Canvas " + this.canvas.id + " does not have position: absolute! Instead it has " + getComputedStyle(this.canvas).position)
+        }
+        
+        this.canvas.style.cursor = "move"
+        this.canvas.onmousedown = dragElement.bind(this)
+
+        function dragElement(e) {
+            let x1 = 0
+            let y1 = 0
+            let x2 = 0
+            let y2 = 0
+
+            e = e || window.event
+            e.preventDefault()
+
+            x2 = e.clientX
+            y2 = e.clientY
+            document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null }
+            document.onmousemove = mouseMoveElement.bind(this)
+
+            function mouseMoveElement(e) {
+                e = e || window.event
+                e.preventDefault()
+
+                x1 = x2 - e.clientX
+                y1 = y2 - e.clientY
+                x2 = e.clientX
+                y2 = e.clientY
+                this.canvas.style.top = (this.canvas.offsetTop - y1) + "px";
+                this.canvas.style.left = (this.canvas.offsetLeft - x1) + "px";
+            }
+        }
+
+        this.isDraggable = true
+    }
+
+    makeUndraggable () {
+        if (!this.isDraggable) { 
+            console.log("Canvas " + this.canvas.id + " is already undraggable!")
+            return
+        }
+
+        this.canvas.style.cursor = auto
+        this.canvas.onmousedown = null
+        this.isDraggable = false
+    }
 }
 
 class AnimElement {
     constructor (element, elementID, animationType, animationParams) {
-        this.element = element
+        this.element = document.getElementById(element.id)
         this.animationType = animationType
         this.animationParams = animationParams
         this.elementID = elementID
+        this.isHidden = false
+        this.isDraggable = false
+        this.defaultDisplay = this.element.style.display // note that if this changes after object is created, one must update this property
     }
 
     setAnimation(animationType, animationParams) {
         this.animationType = animationType
         this.animationParams = animationParams
+    }
+
+    removeElement () {
+        this.element.remove()
+    }
+
+    hideElement () {
+        if (this.isHidden) {
+            console.log("Element " + this.element.id + " is already hidden!")
+            return
+        }
+        this.element.style.display = "none"
+        this.isHidden = true
+    }
+
+    showElement () {
+        if (!this.isHidden) {
+            console.log("Element " + this.element.id + " is already visible!")
+            return
+        }
+        this.element.style.display = this.defaultDisplay
+        this.isHidden = false
+    }
+
+    makeDraggable () {
+        if (this.isDraggable) { 
+            console.log("Element " + this.element.id + " is already draggable!")
+            return
+        }
+        if (getComputedStyle(this.element).position !== "absolute") {
+            console.log("Element " + this.element.id + " does not have position: absolute! Instead it has " + getComputedStyle(this.element).position)
+        }
+        
+        this.element.style.cursor = "move"
+        this.element.onmousedown = dragElement.bind(this)
+
+        function dragElement(e) {
+            let x1 = 0
+            let y1 = 0
+            let x2 = 0
+            let y2 = 0
+
+            e = e || window.event
+            e.preventDefault()
+
+            x2 = e.clientX
+            y2 = e.clientY
+            document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null }
+            document.onmousemove = mouseMoveElement.bind(this)
+
+            function mouseMoveElement(e) {
+                e = e || window.event
+                e.preventDefault()
+
+                x1 = x2 - e.clientX
+                y1 = y2 - e.clientY
+                x2 = e.clientX
+                y2 = e.clientY
+                this.element.style.top = (this.element.offsetTop - y1) + "px";
+                this.element.style.left = (this.element.offsetLeft - x1) + "px";
+            }
+        }
+
+        this.isDraggable = true
+    }
+
+    makeUndraggable () {
+        if (!this.isDraggable) { 
+            console.log("Element " + this.element.id + " is already undraggable!")
+            return
+        }
+
+        this.element.style.cursor = auto
+        this.element.onmousedown = null
+        this.isDraggable = false
     }
 }

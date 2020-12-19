@@ -7,9 +7,10 @@ img {
     text-align: center;
 }
 
-.description {
+#description {
     width: 800px;
     display: flex;
+    position: absolute;
     text-align: center;
     margin: auto;
 }
