@@ -133,7 +133,7 @@ class AudioVisGenerator {
                 animCanvas.ctx.beginPath();
                 animCanvas.ctx.strokeStyle = animCanvas.primaryColor;
                 animCanvas.ctx.moveTo(space * index, animCanvas.canvas.height);
-                animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height*(value/100));
+                animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - animCanvas.canvas.height*(value/100));
                 animCanvas.ctx.lineWidth = space
                 animCanvas.ctx.stroke();
             });
