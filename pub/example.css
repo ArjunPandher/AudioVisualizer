@@ -4,14 +4,15 @@ img {
 }
 
 .header {
-    text-align: center;
+    display: flex;
+    text-align: left;
+    margin: auto;
 }
 
 #description {
     width: 800px;
     display: flex;
-    position: absolute;
-    text-align: center;
+    text-align: left;
     margin: auto;
 }
 
@@ -24,12 +25,12 @@ img {
 #audioVisDiv {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: left;
 }
 
 .footer {
     width: 800px;
     display: flex;
-    text-align: center;
+    text-align: left;
     margin: auto;
 }

@@ -16,13 +16,13 @@ class AudioVisGenerator {
 
         this.audioData = {} // Storing the audio data in an array of predefined size
 
-        this.canvasTypes = ["bar", "circle"]; // The types of canvases currently available to use
-        this.animationTypes = ["vertical", "horizontal", "rotation", "scaleX", "scaleY", "skewX", "skewY", "color", "backgroundColor"] // The types of animations currently available to use
+        this.canvasTypes = {0:"bar", 1:"circle"}; // The types of canvases currently available to use
+        this.animationTypes = {0:"vertical", 1:"horizontal", 2:"rotation", 3:"scaleX", 4:"scaleY", 5:"skewX", 6:"skewY", 7:"color", 8:"backgroundColor"} // The types of animations currently available to use
         this.isSetUp = false // Whether the setUp() method has been called or not
     }
 
     // Must be called upon user input.
-    async setUp() {
+    setUp() {
         this.audioCtx = new AudioContext(); // The audio context of the audio source
         this.audioAnalyser = this.audioCtx.createAnalyser(); // The object responsible for analzying the audio being played
         this.audioAnalyser.fftSize = 2 ** 11; // Setting the analyser's array input size
@@ -37,10 +37,12 @@ class AudioVisGenerator {
 
     // Creating an animated canvas and returning it
     addCanvas(canvas, canvasType, primaryColor, secondaryColor) {
+        canvasType = this.canvasTypes[canvasType]
         if (!this.canvasTypes.includes(canvasType)) {
             console.log("Invalid canvas type!")
             return
         }
+        console.log(primaryColor)
         const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum, primaryColor, secondaryColor)
         this.canvasNum = this.canvasNum + 1;
         this.canvases.push(animCanvas);
@@ -49,6 +51,7 @@ class AudioVisGenerator {
 
     // Adding an element to be animated
     addElement(element, animationType, animationParams) {
+        animationType = this.animationTypes[animationType]
         if (!this.animationTypes.includes(animationType)){
             console.log("Invalid animation type!")
             return
@@ -75,7 +78,7 @@ class AudioVisGenerator {
     removeElement(elementID) {
         for (let i = 0; i < this.animElements.length; i++) {
             if (this.animElements[i].elementID === elementID) {
-                this.animElements.removeElement();
+                this.animElements[i].removeElement();
                 this.animElements.splice(i, 1)
                 return
             }
@@ -313,7 +316,7 @@ class AnimCanvas {
         this.ctx = canvas.getContext("2d")
         this.isHidden = false
         this.isDraggable = false
-        this.defaultDisplay = this.canvas.style.display // note that if this changes after object is created, one must update this property
+        this.defaultPosition = this.canvas.style.position // note that if this changes after object is created, one must update this property
         this.primaryColor = primaryColor
         this.secondaryColor = secondaryColor
     }
@@ -396,6 +399,10 @@ class AnimCanvas {
         this.canvas.onmousedown = null
         this.isDraggable = false
     }
+
+    setDefaultPosition(position) {
+        this.defaultPosition = position
+    }
 }
 
 class AnimElement {
@@ -406,10 +413,10 @@ class AnimElement {
         this.elementID = elementID
         this.isHidden = false
         this.isDraggable = false
-        this.defaultDisplay = this.element.style.display // note that if this changes after object is created, one must update this property
+        this.defaultPosition = this.element.style.position // note that if this changes after object is created, one must update this property
     }
 
-    setAnimation(animationType, animationParams) {
+    setAnimationType(animationType, animationParams) {
         this.animationType = animationType
         this.animationParams = animationParams
     }
@@ -487,5 +494,9 @@ class AnimElement {
         this.element.style.cursor = auto
         this.element.onmousedown = null
         this.isDraggable = false
+    }
+
+    setDefaultPosition(position) {
+        this.defaultPosition = position
     }
 }

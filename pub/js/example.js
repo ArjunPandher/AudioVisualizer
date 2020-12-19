@@ -5,10 +5,10 @@ let colorTextDiv = document.getElementById("description")
 
 let audioDiv = document.getElementById("audioVisDiv")
 
-barVis = audioGen.addCanvas(barVis, "bar")
-circleVis = audioGen.addCanvas(circleVis, "circle")
-audioDiv.appendChild(barVis.canvas, "#ffb4a2", "#b5838d")
-audioDiv.appendChild(circleVis.canvas, "#ffb4a2", "#b5838d")
+barVis = audioGen.addCanvas(barVis, "bar", "#ffb4a2", "#b5838d")
+circleVis = audioGen.addCanvas(circleVis, "circle", "#ffb4a2", "#b5838d")
+audioDiv.appendChild(barVis.canvas)
+audioDiv.appendChild(circleVis.canvas)
 
 colorTextDiv = audioGen.addElement(colorTextDiv, "color", [{red: 255, blue: 0, green: 0},{red: 0, blue: 255, green: 0}])
 colorTextDiv.makeDraggable()

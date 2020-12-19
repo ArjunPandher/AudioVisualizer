@@ -1,0 +1,60 @@
+.header {
+    display: block;
+    text-align: left;
+    margin: auto;
+}
+
+.rightColumn {
+    width: 1000px;
+    display: block;
+    text-align: left;
+    margin: auto;
+}
+
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0px;
+    background-color: #FFF2EB;
+}
+
+.description {
+    line-height: 175%;
+}
+
+.methodParamColumn {
+    width: 250px;
+}
+
+.tableBody {
+    border-collapse: collapse;
+    display: block;
+    background-color: #FFE4D6;
+    border: 2px solid #6D6875;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+th {
+    font-size: 120%;
+    padding: 20px;
+}
+
+td {
+    font-size: 110%;
+    padding: 20px;
+}
+
+tr {
+    padding: 5px;
+    border-bottom: 1px solid #666D6875;
+}
+
+code {
+    border: 1px solid #E5989B;
+    background-color: #ffb4a2;
+    width: fit-content;
+    border-radius: 2px;
+    border-width: 2px;
+    padding: 4px;
+}

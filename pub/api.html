@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Arjun's Audio Visualiser</title>
+        <link rel="stylesheet" type="text/css" href="api.css">
+    </head>
+
+    <body>
+        <div class="leftColumn">
+
+        </div>
+        <div class="rightColumn">
+            <div class="header">
+                <h1>Arjun's Audio Visualiser Documentation</h1>
+            </div>
+
+            <div class="description">
+                <h2>Introduction</h2>
+                This is an audio visualiser library, making it easy for developers to quickly add audio-reactive components to their website. <br>
+                Add 
+                <code>
+                    <span>&lt;script src="bav.js">&lt;/script></span>
+                </code>
+                to your HTML <code>&lt;head></code> tag.
+            </div>
+
+            <div class="description">
+                <h2>AudioVisGenerator</h2>
+                This can be used to generate all objects in the library, as well as animate them.
+                <h3>Usage</h3>
+                Create a new AudioVisGenerator using
+                <code>
+                    const audioVisGen = new AudioVisGenerator(audioPath, audioElementId)
+                </code>
+                Where <code>audioPath</code> is a url to an mp3 file, and <code>audioElementId</code> is the ID of the audio player you are using.
+                Make sure to use <code>AudioVisGenerator.setUp</code> on some form of user input before calling any of its animate methods. This is mandatory for most modern browsers.
+                You can instantiate multiple AudioVisGenerators for different audio sources and different audio players.
+            </div>
+
+            <div class="tableHeader">List of methods</div>
+            <div class="table">
+                <table class="tableBody">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.setUp()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Sets up audio processing modules that aren't allowed to be set up upon window creation. Must be called after some user interation with the webpage.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.addCanvas(canvas, canvasType, primaryColor, secondaryColor)</td>
+                            <td class="methodParamColumn">
+                                canvas: Canvas <br>
+                                canvasType: Integer <br>
+                                primaryColor(optional): RGB/Hex Color <br>
+                                secondaryColor(optional): RGB/Hex Color
+                            </td>
+                            <td class="methodDescriptionColumn">Creates and returns a new AnimCanvas object. This is the recommended way to add a new canvas to your program. canvasType must be in range 0-1, where each integer corresponds to a canvas animation type as follows: {0: "bar", 1: "circle"}</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.addElement(element, animationType, animationParams)</td>
+                            <td class="methodParamColumn">
+                                element: HTML Element <br>
+                                animationType: Integer <br>
+                                animationParams: Array[Object]
+                            </td>
+                            <td class="methodDescriptionColumn">
+                                Creates and returns a new AnimElement object. This is the recommended way to add a new animated element to your program. animationType must me in range 0-8, where each integer corresponds to an animation type as follows: {0: "vertical", 1: "horizontal", 2: "rotation", 3: "scaleX", 4: "scaleY", 5: "skewX", 6: "skewY", 7: "color", 8: "backgroundColor"}.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.removeCanvas(canvasID)</td>
+                            <td class="methodParamColumn">
+                                canvasID: Integer
+                            </td>
+                            <td class="methodDescriptionColumn">
+                                Removes a canvas with ID canvasID from the AudioVisualizer.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.removeElement(elementID)</td>
+                            <td class="methodParamColumn">
+                                elementID: Integer
+                            </td>
+                            <td class="methodDescriptionColumn">
+                                Removes an element with ID elementID from the AudioVisualizer.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.animateAllCanvases()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">
+                                Animates all of the canvases in the AudioVisualizer.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.animateAllElements()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">
+                                Animates all of the elements in the AudioVisualizer.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.animateCanvas(animCanvas)</td>
+                            <td class="methodParamColumn">
+                                animCanvas: AnimCanvas
+                            </td>
+                            <td class="methodDescriptionColumn">
+                                Animates a specific AnimCanvas.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AudioVisGenerator.animateElement(animElement)</td>
+                            <td class="methodParamColumn">
+                                animElement: AnimElement
+                            </td>
+                            <td class="methodDescriptionColumn">
+                                Animates a specific AnimElement.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="description">
+                <h2>AnimCanvas</h2>
+                The AnimCanvas adds a bunch of functionality around HTML canvases, automatically adjusting it to sync to the audio of the AudioVisGenerator it was created in. It is highly reccomended to only create new AnimCanvases through the AudioVisGenerator.addCanvas() method.
+                <h3>Usage</h3>
+                Create a new AnimCanvas using
+                <code>
+                    const animCanvas = AudioVisGenerator.addCanvas(canvas, canvasType, primaryColor, secondaryColor)
+                </code>
+                See the documentation for AudioVisGenerator.addCanvas() above.
+            </div>
+
+            <div class="tableHeader">List of methods</div>
+            <div class="table">
+                <table class="tableBody">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.setCanvasType(canvasType)</td>
+                            <td class="methodParamColumn">
+                                canvasType: String
+                            </td>
+                            <td class="methodDescriptionColumn">TO BE CHANGED ONCE IM DONE PACKAGING</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.removeCanvas()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Removes the AnimCanvas element from the DOM. Generally shouldn't be used on its own outside of AudioVisGenerator.removeCanvas() for optimization purposes.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.hideCanvas()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Hides the AnimCanvis from the DOM.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.showCanvas()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Reveals the AnimCanvis in the DOM, if AnimCanvas.hideCanvas() was called prior on this AnimCanvas.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.makeDraggable()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Allows the canvas to be dragged across the screen as the user wishes. Canvas must have the position: absolute CSS attribute.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.makeUndraggable()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Prevents the canvas from being draggable, if AnimCanvas.makeDraggable() was called prior on this AnimCanvas.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimCanvas.setDefaultPosition(position)</td>
+                            <td class="methodParamColumn">
+                                position: String
+                            </td>
+                            <td class="methodDescriptionColumn">Changes the default position CSS attribute that the AnimCanvas uses. Only to be used if one plans on using makeDraggable AND wants to change the canvas's position attribute after creation.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="description">
+                <h2>AnimElement</h2>
+                The AnimElement adds a bunch of functionality to any HTML element you wish, automatically adjusting it to sync to the audio of the AudioVisGenerator it was created in. It is highly reccomended to only create new AnimElements through the AudioVisGenerator.addElement() method.
+                <h3>Usage</h3>
+                Create a new AnimElement using
+                <code>
+                    const animElement = AudioVisGenerator.addElement(element, animationType, animationParams)
+                </code>
+                See the documentation for AudioVisGenerator.addElement() above.
+
+            </div>
+
+            <div class="tableHeader">List of methods</div>
+            <div class="table">
+                <table class="tableBody">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.setAnimationType(animationType, animationParams)</td>
+                            <td class="methodParamColumn">
+                                animationType: String<br>
+                                animationParams: Array[Object]
+                            </td>
+                            <td class="methodDescriptionColumn">TO BE CHANGED ONCE IM DONE PACKAGING</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.removeElement()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Removes the AnimElement element from the DOM. Generally shouldn't be used on its own outside of AudioVisGenerator.removeElement() for optimization purposes.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.hideElement()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Hides the AnimElement from the DOM.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.showElement()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Reveals the AnimElement in the DOM, if AnimElement.hideElement() was called prior on this AnimElement.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.makeDraggable()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Allows the element to be dragged across the screen as the user wishes. Element must have the position: absolute CSS attribute.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.makeUndraggable()</td>
+                            <td class="methodParamColumn"></td>
+                            <td class="methodDescriptionColumn">Prevents the element from being draggable, if AnimElement.makeDraggable() was called prior on this AnimElement.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.setDefaultPosition(position)</td>
+                            <td class="methodParamColumn">
+                                position: String
+                            </td>
+                            <td class="methodDescriptionColumn">Changes the default position CSS attribute that the AnimElement uses. Only to be used if one plans on using makeDraggable AND wants to change the element's position attribute after creation.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="description">
+                <h2>Animation Types</h2>
+                The AnimElement has a wide variety of animation options, but each one requires different arguments to properly function. The following table documents all of the different types of animations available in this library, and the arguments they require.
+            </div>
+            <div class="tableHeader">List of animation types</div>
+            <div class="table">
+                <table class="tableBody">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Parameters</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">0: "verticle"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxMoveAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxMoveAmount is the maximum verticle distance in pixels you would like the element to move.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">1: "horizontal"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxMoveAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxMoveAmount is the maximum horizontal distance in pixels you would like the element to move.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">2: "rotation"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxRotateAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxRotateAmount is the maximum rotation amount in degrees you would like the element to rotate.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">3: "scaleX"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxScaleAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxScaleAmount is the maximum horizontal ratio you would like the element to scale.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">4: "scaleY"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxScaleAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxScaleAmount is the maximum verticle ratio you would like the element to scale.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">5: "skewX"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxSkewAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxSkewAmount is the maximum horizontal ratio you would like the element to skew.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">6: "skewY"</td>
+                            <td class="methodParamColumn">
+                                Array[0](maxSkewAmount): Integer
+                            </td>
+                            <td class="methodDescriptionColumn">maxSkewAmount is the maximum verticle ratio you would like the element to skew.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">7: "color"</td>
+                            <td class="methodParamColumn">
+                                Array[0](color1): {red: Integer, blue: Integer, green: Integer}
+                                Array[1](color2): {red: Integer, blue: Integer, green: Integer}
+                            </td>
+                            <td class="methodDescriptionColumn">color1 and color2 are two objects, each with three integers corresponding to the RGB values you would like the DOM element's color attribute to transition from and to. For best results, choose colors close to one another in RGB values.</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">8: "backgroundColor"</td>
+                            <td class="methodParamColumn">
+                                Array[0](color1): {red: Integer, blue: Integer, green: Integer}
+                                Array[1](color2): {red: Integer, blue: Integer, green: Integer}
+                            </td>
+                            <td class="methodDescriptionColumn">color1 and color2 are two objects, each with three integers corresponding to the RGB values you would like the DOM element's backgroung-color attribute to transition from and to. For best results, choose colors close to one another in RGB values.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
