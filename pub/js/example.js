@@ -18,7 +18,7 @@ player1.onplay = () => {
         player1HasBeenPlayed = true
     }
     audioGen1.animateAllCanvases()
-    audioGen1.animateAllElements()
+    audioGen2.animateAllElements()
 }
 
 $("li").on("click", function() {
