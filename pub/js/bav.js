@@ -197,6 +197,8 @@ class AudioVisGenerator {
             dataAvg = dataAvg / data.length
             dataAvg = dataAvg / 100
 
+            console.log(animElement.animationType)
+
             switch (animElement.animationType) {
                 case "vertical":
                     vertAnim(dataAvg);
