@@ -36,11 +36,12 @@ class AudioVisGenerator {
 
     // Creating an animated canvas and returning it
     addCanvas(canvas, canvasType, primaryColor, secondaryColor) {
-        canvasType = this.canvasTypes[canvasType]
-        if (!this.canvasTypes.includes(canvasType)) {
+        if (!canvasType in this.canvasTypes) {
             console.log("Invalid canvas type!")
             return
         }
+        canvasType = this.canvasTypes[canvasType]
+        
         console.log(primaryColor)
         const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum, primaryColor, secondaryColor)
         this.canvasNum = this.canvasNum + 1;
