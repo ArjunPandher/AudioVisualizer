@@ -127,7 +127,7 @@ class AudioVisGenerator {
             animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
             // Setting the space between each bar
             let space = animCanvas.canvas.width / data.length;
-            console.log(animCanvas.canvas.style.width)
+            console.log(getComputedStyle(animCanvas.canvas).width)
             // Changing the size of each bar in the canvas based on the audio data
             animCanvas.ctx.lineWidth = space
             data.forEach((value, index) => {
