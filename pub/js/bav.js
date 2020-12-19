@@ -123,18 +123,18 @@ class AudioVisGenerator {
         function barDraw(data) {
             // Translating our data fron a Uint8Array to a regular array
             data = Array.from(data);
+            data = data.splice
             // Clearing the rectangle every time this is called
             animCanvas.ctx.clearRect(0, 0, animCanvas.canvas.width, animCanvas.canvas.height);
             // Setting the space between each bar
             let space = animCanvas.canvas.width / data.length;
-            console.log(getComputedStyle(animCanvas.canvas).width)
             // Changing the size of each bar in the canvas based on the audio data
             animCanvas.ctx.lineWidth = space
             data.forEach((value, index) => {
                 animCanvas.ctx.beginPath();
                 animCanvas.ctx.strokeStyle = animCanvas.primaryColor;
                 animCanvas.ctx.moveTo(space * index, animCanvas.canvas.height);
-                animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - animCanvas.canvas.height*(value/100));
+                animCanvas.ctx.lineTo(space * index, animCanvas.canvas.height - value);
                 animCanvas.ctx.lineWidth = space
                 animCanvas.ctx.stroke();
             });
