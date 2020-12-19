@@ -3,7 +3,7 @@ const audioGen2 = new AudioVisGenerator("player2")
 const audioGen3 = new AudioVisGenerator("player3")
 
 const barCanvas = document.getElementById("canvas-bar")
-const barCanvasVis = audioGen1.addCanvas(barCanvas, 0, "#b5838d", "#ffb4a2")
+const barCanvasVis = audioGen1.addCanvas(barCanvas, 0, "#000000", "#ffb4a2")
 
 const player1 = document.getElementById("player1")
 let player1HasBeenPlayed = false
