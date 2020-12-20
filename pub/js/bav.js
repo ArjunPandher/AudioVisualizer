@@ -214,7 +214,6 @@ class AudioVisGenerator {
                         firstTransformAnim = false;
                         break;
                     case 3:
-                        console.log("Bruh")
                         scaleXAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
                         firstTransformAnim = false;
                         break;
@@ -272,6 +271,7 @@ class AudioVisGenerator {
         function scaleXAnim(dataAvg, params, firstTransformAnim){
             const maxScaleAmount = params[0]
             if (firstTransformAnim) {
+                console.log("Bruh")
                 animElement.element.style.transform = 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
                 return
             }
