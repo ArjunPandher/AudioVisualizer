@@ -20,6 +20,7 @@ player1.onplay = () => {
     audioGen1.animateAllCanvases()
 }
 
+console.log("bruh")
 const player2 = document.getElementById("player2")
 let player2HasBeenPlayed = false
 player1.onplay = () => {
