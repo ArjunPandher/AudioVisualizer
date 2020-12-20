@@ -23,6 +23,7 @@ player1.onplay = () => {
 const player2 = document.getElementById("player2")
 let player2HasBeenPlayed = false
 player2.onplay = () => {
+    console.log("bruh")
     if (!player2HasBeenPlayed) {
         audioGen2.setUp()
         player2HasBeenPlayed = true
