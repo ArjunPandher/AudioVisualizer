@@ -231,41 +231,38 @@ class AudioVisGenerator {
 
         function vertAnim(dataAvg) {
             const maxMoveAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+            animElement.element.style.transform += 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
         function horiAnim(dataAvg) {
             const maxMoveAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+            animElement.element.style.transform += 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
         function rotateAnim(dataAvg) {
             const maxRotateAmount = animElement.animationParams[0]
-            console.log(getComputedStyle(animElement.element).transform)
-            if (getComputedStyle(animElement.element).transform.includes('rotate')) {
-                console.log('Bruh')
-            }
-            animElement.element.style.transform = 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
+            
+            animElement.element.style.transform += 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
         }
 
         function scaleXAnim(dataAvg){
             const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
+            animElement.element.style.transform += 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
         }
 
         function scaleYAnim(dataAvg){
             const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
+            animElement.element.style.transform += 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
         }
 
         function skewXAnim(dataAvg){
             const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
+            animElement.element.style.transform += 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
         function skewYAnim(dataAvg){
             const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
+            animElement.element.style.transform += 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
         function colorAnim(dataAvg){
