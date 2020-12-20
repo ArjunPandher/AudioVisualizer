@@ -298,7 +298,7 @@ class AudioVisGenerator {
         function skewYAnim(dataAvg, params, firstTransformAnim){
             const maxSkewAmount = params[0]
             if (firstTransformAnim) {
-
+                animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
                 return
             }
             animElement.element.style.transform += 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
@@ -320,7 +320,6 @@ class AudioVisGenerator {
             const diffgreen = green1 - green2
 
             animElement.element.style.color = 'rgb(' + Math.round(red1 - diffred * dataAvg) + ',' + Math.round(blue1 - diffblue * dataAvg) + ',' + Math.round(green1 - diffgreen * dataAvg) + ')'
-            console.log("Bruh")
         }
 
         function backgroundColorAnim(dataAvg, params){
