@@ -199,8 +199,9 @@ class AudioVisGenerator {
 
             let firstTransformAnim = true;
 
+            console.log("Bruh")
+
             for (let i = 0; i < animElement.animationType.length; i++) {
-                console.log("Bruh")
                 switch (animElement.animationType) {
                     case 0:
                         vertAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
