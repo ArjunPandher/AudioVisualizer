@@ -199,7 +199,7 @@ class AudioVisGenerator {
 
             let firstTransformAnim = true;
 
-            console.log("Bruh")
+            console.log(animElement.animationType.length)
 
             for (let i = 0; i < animElement.animationType.length; i++) {
                 switch (animElement.animationType) {

@@ -8,7 +8,7 @@ barCanvas.height = "300"
 const barCanvasVis = audioGen1.addCanvas(barCanvas, 0, "#000000", "#ffb4a2")
 
 const basicElem = document.getElementById("audioVisElement1")
-const basicElemVis = audioGen2.addElement(basicElem, 3, [3])
+const basicElemVis = audioGen2.addElement(basicElem, [[3]], [[3]])
 
 const advancedElem = document.getElementById("audioVisElement2")
 const advancedElemVis1 = audioGen3.addElement(advancedElem, [2, 7], [[30], [{red:0, green: 255, blue: 0}, {red:255, green: 0, blue: 0}]])
