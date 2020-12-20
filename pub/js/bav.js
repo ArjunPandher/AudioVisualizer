@@ -241,6 +241,7 @@ class AudioVisGenerator {
 
         function rotateAnim(dataAvg) {
             const maxRotateAmount = animElement.animationParams[0]
+            console.log(getComputedStyle(animElement.element).transform)
             if (getComputedStyle(animElement.element).transform.includes('rotate')) {
                 console.log('Bruh')
             }
