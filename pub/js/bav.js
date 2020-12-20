@@ -197,8 +197,6 @@ class AudioVisGenerator {
             dataAvg = dataAvg / data.length
             dataAvg = dataAvg / 100
 
-            console.log(animElement.animationType)
-
             switch (animElement.animationType) {
                 case "vertical":
                     vertAnim(dataAvg);
@@ -248,22 +246,22 @@ class AudioVisGenerator {
 
         function scaleXAnim(dataAvg){
             const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleX(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + 'deg)'
+            animElement.element.style.transform = 'scaleX(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
         }
 
         function scaleYAnim(dataAvg){
             const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + 'deg)'
+            animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
         }
 
         function skewXAnim(dataAvg){
             const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + 'deg)'
+            animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
         function skewYAnim(dataAvg){
             const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + 'deg)'
+            animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
         function colorAnim(dataAvg){
