@@ -34,6 +34,7 @@
                     const audioVisGen = new AudioVisGenerator(audioElementId)
                 </code>
                 Where <code>audioElementId</code> is the ID of the audio player you are using.
+                Additionally, this library uses JQuery, so make sure to include it in your website.
                 Make sure to use <code>AudioVisGenerator.setUp()</code> on some form of user input before calling any of its animate methods. This is mandatory for most modern browsers.
                 You can instantiate multiple AudioVisGenerators for different audio sources and different audio players.
             </div>
@@ -207,7 +208,7 @@
                         <tr>
                             <td class="methodNameColumn">AnimElement.addAnimation()</td>
                             <td class="methodParamColumn">
-                                animationNum: Integer
+                                animationNum: Integer<br>
                                 params: Array[Object]
                             </td>
                             <td class="methodDescriptionColumn">Adds an animation with a set of arguments to the AnimElement</td>
