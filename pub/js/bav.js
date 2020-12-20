@@ -40,7 +40,6 @@ class AudioVisGenerator {
             console.log("Invalid canvas type!")
             return
         }
-        canvasType = this.canvasTypes[canvasType]
         
         const animCanvas = new AnimCanvas(canvas, canvasType, this.canvasNum, primaryColor, secondaryColor)
         this.canvasNum = this.canvasNum + 1;
@@ -50,11 +49,12 @@ class AudioVisGenerator {
 
     // Adding an element to be animated
     addElement(element, animationType, animationParams) {
-        if (!animationType in this.animationTypes) {
-            console.log("Invalid canvas type!")
-            return
+        for (let i = 0; i < animationType.length; i++) {
+            if (!animationType[i] in this.animationTypes) {
+                console.log("Invalid animation type!")
+                return
+            }
         }
-        animationType = this.animationTypes[animationType]
         
         const animElement = new AnimElement(element, this.animNum, animationType, animationParams)
         this.animNum = this.animNum + 1;
@@ -113,9 +113,9 @@ class AudioVisGenerator {
     animateCanvas(animCanvas) {
         function animation() {
             this.audioAnalyser.getByteFrequencyData(this.audioData);
-            if (animCanvas.canvasType === "bar") {
+            if (animCanvas.canvasType === 0) {
                 barDraw(this.audioData);
-            } else if (animCanvas.canvasType === "circle") {
+            } else if (animCanvas.canvasType === 1) {
                 circleDraw(this.audioData);
             }
             requestAnimationFrame(animation.bind(this));
@@ -197,72 +197,111 @@ class AudioVisGenerator {
             dataAvg = dataAvg / data.length
             dataAvg = dataAvg / 100
 
-            switch (animElement.animationType) {
-                case "vertical":
-                    vertAnim(dataAvg);
-                    break;
-                case "horizontal":
-                    horiAnim(dataAvg);
-                    break;
-                case "rotation":
-                    rotateAnim(dataAvg);
-                    break;
-                case "scaleX":
-                    scaleXAnim(dataAvg);
-                    break;
-                case "scaleY":
-                    scaleYAnim(dataAvg);
-                    break;
-                case "skewX":
-                    skewXAnim(dataAvg);
-                    break;
-                case "skewY":
-                    skewYAnim(dataAvg);
-                    break;
-                case "color":
-                    colorAnim(dataAvg);
-                    break;
-                case "backgroundColor":
-                    backgroundColorAnim(dataAvg);
-                    break;
+            let firstTransformAnim = true;
+
+            for (let i = 0; i < animElement.animationType.length; i++) {
+                switch (animElement.animationType) {
+                    case 0:
+                        vertAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 1:
+                        horiAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 2:
+                        rotateAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 3:
+                        scaleXAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 4:
+                        scaleYAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 5:
+                        skewXAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 6:
+                        skewYAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
+                        firstTransformAnim = false;
+                        break;
+                    case 7:
+                        colorAnim(dataAvg, animElement.animationParams[i]);
+                        break;
+                    case 8:
+                        backgroundColorAnim(dataAvg, animElement.animationParams[i]);
+                        break;
+                }
             }
+
             requestAnimationFrame(animation.bind(this));
         }
 
-        function vertAnim(dataAvg) {
-            const maxMoveAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+        function vertAnim(dataAvg, params, firstTransformAnim) {
+            const maxMoveAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+                return
+            }
+            animElement.element.style.transform += 'translateY(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
-        function horiAnim(dataAvg) {
-            const maxMoveAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+        function horiAnim(dataAvg, params, firstTransformAnim) {
+            const maxMoveAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
+                return
+            }
+            animElement.element.style.transform += 'translateX(' + Math.min(maxMoveAmount * dataAvg, maxMoveAmount) + 'px)'
         }
 
-        function rotateAnim(dataAvg) {
-            const maxRotateAmount = animElement.animationParams[0]
-            
-            animElement.element.style.transform = 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
+        function rotateAnim(dataAvg, params, firstTransformAnim) {
+            const maxRotateAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
+                return
+            }
+            animElement.element.style.transform += 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
         }
 
-        function scaleXAnim(dataAvg){
-            const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
+        function scaleXAnim(dataAvg, params, firstTransformAnim){
+            const maxScaleAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
+                return
+            }
+            animElement.element.style.transform += 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
         }
 
-        function scaleYAnim(dataAvg){
-            const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
+        function scaleYAnim(dataAvg, params, firstTransformAnim){
+            const maxScaleAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
+                return
+            }
+            animElement.element.style.transform += 'scaleY(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
         }
 
-        function skewXAnim(dataAvg){
-            const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
+        function skewXAnim(dataAvg, params, firstTransformAnim){
+            const maxSkewAmount = params[0]
+            if (firstTransformAnim) {
+                animElement.element.style.transform = 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
+                return
+            }
+            animElement.element.style.transform += 'skewX(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
-        function skewYAnim(dataAvg){
-            const maxSkewAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
+        function skewYAnim(dataAvg, params, firstTransformAnim){
+            const maxSkewAmount = params[0]
+            if (firstTransformAnim) {
+
+                return
+            }
+            animElement.element.style.transform += 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
         function colorAnim(dataAvg){
@@ -412,6 +451,22 @@ class AnimElement {
         this.isHidden = false
         this.isDraggable = false
         this.defaultPosition = this.element.style.position // note that if this changes after object is created, one must update this property
+    }
+
+    addAnimation(animationNum, params) {
+        this.animationType.push(animationNum)
+        this.animationParams.push(params)
+    }
+
+    removeAnimation(animationNum) {
+        for (let i = 0; i < this.animationType.length; i++) {
+            if (this.animationType[i] === animationNum) {
+                this.animationType.splice(i, 1)
+                this.animationParams.splice(i, 1)
+                return
+            }
+        }
+        console.log("Unable to find animation with ID " + animationNum)
     }
 
     removeElement () {
