@@ -241,6 +241,7 @@ class AudioVisGenerator {
 
         function rotateAnim(dataAvg) {
             const maxRotateAmount = animElement.animationParams[0]
+            console.log(maxRotateAmount)
             animElement.element.style.transform = 'rotate(' + Math.min(maxRotateAmount * dataAvg, maxRotateAmount) + 'deg)'
         }
 
@@ -320,10 +321,6 @@ class AnimCanvas {
         this.defaultPosition = this.canvas.style.position // note that if this changes after object is created, one must update this property
         this.primaryColor = primaryColor
         this.secondaryColor = secondaryColor
-    }
-
-    setCanvasType(canvasType){
-        this.canvasType = canvasType
     }
 
     removeCanvas () {
@@ -415,11 +412,6 @@ class AnimElement {
         this.isHidden = false
         this.isDraggable = false
         this.defaultPosition = this.element.style.position // note that if this changes after object is created, one must update this property
-    }
-
-    setAnimationType(animationType, animationParams) {
-        this.animationType = animationType
-        this.animationParams = animationParams
     }
 
     removeElement () {
