@@ -304,13 +304,13 @@ class AudioVisGenerator {
             animElement.element.style.transform += 'skewY(' + Math.min(maxSkewAmount * dataAvg, maxSkewAmount) + ')'
         }
 
-        function colorAnim(dataAvg){
-            const color1 = animElement.animationParams[0]
+        function colorAnim(dataAvg, params){
+            const color1 = params[0]
             const red1 = color1.red
             const blue1 = color1.blue
             const green1 = color1.green
 
-            const color2 = animElement.animationParams[1]
+            const color2 = params[1]
             const red2 = color2.red
             const blue2 = color2.blue
             const green2 = color2.green
@@ -323,7 +323,7 @@ class AudioVisGenerator {
             console.log("Bruh")
         }
 
-        function backgroundColorAnim(dataAvg){
+        function backgroundColorAnim(dataAvg, params){
             const color1 = animElement.animationParams[0]
             const red1 = color1.red
             const blue1 = color1.blue
