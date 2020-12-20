@@ -104,7 +104,6 @@ class AudioVisGenerator {
             return
         }
         for (let i = 0; i < this.animNum; i++) {
-            console.log("bruh")
             this.animateElement(this.animElements[i])
         }
     }
@@ -197,6 +196,8 @@ class AudioVisGenerator {
             }
             dataAvg = dataAvg / data.length
             dataAvg = dataAvg / 100
+
+            console.log(animElement.animationType)
 
             switch (animElement.animationType) {
                 case "vertical":
