@@ -200,7 +200,6 @@ class AudioVisGenerator {
             let firstTransformAnim = true;
 
             for (let i = 0; i < animElement.animationType.length; i++) {
-                console.log(animElement.animationType)
                 switch (animElement.animationType[i]) {
                     case 0:
                         vertAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
@@ -321,6 +320,7 @@ class AudioVisGenerator {
             const diffgreen = green1 - green2
 
             animElement.element.style.color = 'rgb(' + Math.round(red1 - diffred * dataAvg) + ',' + Math.round(blue1 - diffblue * dataAvg) + ',' + Math.round(green1 - diffgreen * dataAvg) + ')'
+            console.log("Bruh")
         }
 
         function backgroundColorAnim(dataAvg){
