@@ -66,11 +66,11 @@
                             <td class="methodNameColumn">AudioVisGenerator.addElement(element, animationType, animationParams)</td>
                             <td class="methodParamColumn">
                                 element: HTML Element <br>
-                                animationType: Integer <br>
-                                animationParams: Array[Object]
+                                animationType: Array[Integer] <br>
+                                animationParams: Array[Array[Object]]
                             </td>
                             <td class="methodDescriptionColumn">
-                                Creates and returns a new AnimElement object. This is the recommended way to add a new animated element to your program. animationType must me in range 0-8, where each integer corresponds to an animation type as follows: {0: "vertical", 1: "horizontal", 2: "rotation", 3: "scaleX", 4: "scaleY", 5: "skewX", 6: "skewY", 7: "color", 8: "backgroundColor"}.
+                                Creates and returns a new AnimElement object. This is the recommended way to add a new animated element to your program. animationType must have integers in range 0-8, where each integer corresponds to an animation type as follows: {0: "vertical", 1: "horizontal", 2: "rotation", 3: "scaleX", 4: "scaleY", 5: "skewX", 6: "skewY", 7: "color", 8: "backgroundColor"}. For best performance, do not repeat the same animation type multiple times. Additionally, make sure the order of your animations and the animation arguments match up.
                             </td>
                         </tr>
                         <tr>
@@ -203,6 +203,21 @@
                             <th>Name</th>
                             <th>Parameters</th>
                             <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.addAnimation()</td>
+                            <td class="methodParamColumn">
+                                animationNum: Integer
+                                params: Array[Object]
+                            </td>
+                            <td class="methodDescriptionColumn">Adds an animation with a set of arguments to the AnimElement</td>
+                        </tr>
+                        <tr>
+                            <td class="methodNameColumn">AnimElement.removeAnimation()</td>
+                            <td class="methodParamColumn">
+                                animationNum: Integer
+                            </td>
+                            <td class="methodDescriptionColumn">Removes the first animation with ID animationNum from the AnimElement</td>
                         </tr>
                         <tr>
                             <td class="methodNameColumn">AnimElement.removeElement()</td>

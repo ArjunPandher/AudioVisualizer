@@ -99,16 +99,16 @@
                 <div>
                     <code id="js-code2" class="active">
                         const audioVisGen = new AudioVisGenerator("player") <br>
-                        const barCanvas = document.getElementById("audioVisElement1") <br>
-                        const basicElemVis = audioGen2.addElement(basicElem, 3, [3]) <br>
-                        const player2 = document.getElementById("player2")
+                        const basicElem = document.getElementById("audioVisElement1") <br>
+                        const basicElemVis = audioGen.addElement(basicElem, [3], [[3]]) <br>
+                        const player = document.getElementById("player")
                         let playerHasBeenPlayed = false
                         player.onplay = () => {
                         &emsp;    if (!playerHasBeenPlayed) { <br>
                         &emsp;&emsp;    audioVisGen.setUp() <br>
                         &emsp;&emsp;    playerHasBeenPlayed = true <br>
                         &emsp;} <br>
-                        &emsp;audioVisGen.animateAllCanvases() <br>
+                        &emsp;audioVisGen.animateAllElements() <br>
                         }
                     </code>
                 </div>
@@ -154,42 +154,47 @@
 
             <div class="codeDiv">
                 <ul class="tabs">
-                    <li class="active" id="js-tab2"><span class="tabTitle">JS</span></li>
-                    <li id="html-tab2"><span class="tabTitle">HTML</span></li>
-                    <li id="css-tab2"><span class="tabTitle">CSS</span></li>
+                    <li class="active" id="js-tab3"><span class="tabTitle">JS</span></li>
+                    <li id="html-tab3"><span class="tabTitle">HTML</span></li>
+                    <li id="css-tab3"><span class="tabTitle">CSS</span></li>
                 </ul>
                 <div>
-                    <code id="js-code2" class="active">
+                    <code id="js-code3" class="active">
                         const audioVisGen = new AudioVisGenerator("player") <br>
-                        const barCanvas = document.getElementById("canvas-bar") <br>
-                        barCanvas.width = "1000" <br>
-                        barCanvas.height = "300" <br>
-                        const barCanvasVis = audioVisGen.addCanvas(barCanvas, 0, "#000000", "#ffb4a2") <br>
-                        const player1 = document.getElementById("player1") <br>
-                        let playerHasBeenPlayed = false <br>
-                        player1.onplay = () => { <br>
+                        const advancedElem = document.getElementById("audioVisElement1") <br>
+                        const advancedElemVis = audioVisGen.addElement(advancedElem, [3], [[3]]) <br>
+                        advancedElemVis.makeDraggable()
+                        const player = document.getElementById("player")
+                        let playerHasBeenPlayed = false
+                        player.onplay = () => {
                         &emsp;    if (!playerHasBeenPlayed) { <br>
                         &emsp;&emsp;    audioVisGen.setUp() <br>
                         &emsp;&emsp;    playerHasBeenPlayed = true <br>
                         &emsp;} <br>
-                        &emsp;audioVisGen.animateAllCanvases() <br>
+                        &emsp;audioVisGen.animateAllElements() <br>
                         }
                     </code>
                 </div>
                 <div>
-                    <code id="html-code2">
-                        &lt;audio controls id="player1"> <br>
-                        &emsp;&lt;source src="Im%20God.mp3" type="audio/mp3"> <br>
+                    <code id="html-code3">
+                        &lt;audio controls id="player3"> <br>
+                        &emsp;&lt;source src="1539.mp3" type="audio/mp3"> <br>
                         &lt;/audio> <br>
                         &lt;div id="audioVisDiv"> <br>
-                        &emsp;&lt;canvas id="canvas-bar" width="1000" height="300">&lt;/canvas> <br>
+                        &emsp;&lt;div id="audioVisElement2">&lt;h1>Currently Playing: 1539 N. Calvert - JPEGMAFIA&lt;/h1>&lt;/div> <br>
                         &lt;/div>
                     </code>
                 </div>
                 <div>
-                    <code id="css-code2">
-                        #canvas-bar { <br>
-                        &emsp;    background-color: #ffb4a2; <br>
+                    <code id="css-code3">
+                        #emptyDiv1{
+                            &emsp;height: 150px;
+                        }
+                        #audioVisElement2 {
+                            &emsp;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                            &emsp;width: 50%;
+                            &emsp;margin: auto;
+                            &emsp;position: absolute;
                         }
                     </code>
                 </div>

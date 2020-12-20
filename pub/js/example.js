@@ -11,8 +11,8 @@ const basicElem = document.getElementById("audioVisElement1")
 const basicElemVis = audioGen2.addElement(basicElem, [3], [[3]])
 
 const advancedElem = document.getElementById("audioVisElement2")
-const advancedElemVis1 = audioGen3.addElement(advancedElem, [2, 3, 7], [[30], [3], [{red:0, green: 255, blue: 0}, {red:255, green: 0, blue: 0}]])
-advancedElemVis1.makeDraggable()
+const advancedElemVis = audioGen3.addElement(advancedElem, [2, 3, 7], [[30], [3], [{red:0, green: 255, blue: 0}, {red:255, green: 0, blue: 0}]])
+advancedElemVis.makeDraggable()
 
 const player1 = document.getElementById("player1")
 let player1HasBeenPlayed = false
