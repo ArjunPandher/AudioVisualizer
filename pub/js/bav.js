@@ -104,6 +104,7 @@ class AudioVisGenerator {
             return
         }
         for (let i = 0; i < this.animNum; i++) {
+            console.log("bruh")
             this.animateElement(this.animElements[i])
         }
     }
