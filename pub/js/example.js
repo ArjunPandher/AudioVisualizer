@@ -13,7 +13,7 @@ const basicElemVis = audioGen2.addElement(basicElem, 3, [3])
 const advancedElem = document.getElementById("audioVisElement2")
 const advancedElemVis1 = audioGen3.addElement(advancedElem, 2, [30])
 const advancedElemVis2 = audioGen3.addElement(advancedElem, 4, [3])
-const advancedElemVis3 = audioGen3.addElement(advancedElem, 7, [{red:255, green: 255, blue: 0}, {red:255, green: 0, blue: 0}])
+const advancedElemVis3 = audioGen3.addElement(advancedElem, 7, [{red:0, green: 255, blue: 0}, {red:255, green: 0, blue: 0}])
 advancedElemVis1.makeDraggable()
 
 const player1 = document.getElementById("player1")
