@@ -246,7 +246,7 @@ class AudioVisGenerator {
 
         function scaleXAnim(dataAvg){
             const maxScaleAmount = animElement.animationParams[0]
-            animElement.element.style.transform = 'scaleX(' + Math.min(maxScaleAmount * dataAvg, maxScaleAmount) + ')'
+            animElement.element.style.transform = 'scaleX(' + Math.min(Math.max(maxScaleAmount * dataAvg, 1), maxScaleAmount) + ')'
         }
 
         function scaleYAnim(dataAvg){

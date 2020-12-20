@@ -8,7 +8,13 @@ barCanvas.height = "300"
 const barCanvasVis = audioGen1.addCanvas(barCanvas, 0, "#000000", "#ffb4a2")
 
 const basicElem = document.getElementById("audioVisElement1")
-const basicElemVis = audioGen2.addElement(basicElem, 3, [1.5])
+const basicElemVis = audioGen2.addElement(basicElem, 3, [3])
+
+const advancedElem = document.getElementById("audioVisElement2")
+const advancedElemVis1 = audioGen3.addElement(advancedElem, 2, [30])
+const advancedElemVis2 = audioGen3.addElement(advancedElem, 4, [3])
+const advancedElemVis3 = audioGen3.addElement(advancedElem, 7, [{red:255, green: 165, blue: 0}, {red:255, green: 0, blue: 0}])
+advancedElemVis1.makeDraggable()
 
 const player1 = document.getElementById("player1")
 let player1HasBeenPlayed = false
@@ -28,6 +34,16 @@ player2.onplay = () => {
         player2HasBeenPlayed = true
     }
     audioGen2.animateAllElements()
+}
+
+const player3 = document.getElementById("player3")
+let player3HasBeenPlayed = false
+player3.onplay = () => {
+    if (!player3HasBeenPlayed) {
+        audioGen3.setUp()
+        player3HasBeenPlayed = true
+    }
+    audioGen3.animateAllElements()
 }
 
 $("li").on("click", function() {

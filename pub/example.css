@@ -54,6 +54,17 @@ body {
     margin: auto;
 }
 
+#audioVisElement2 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    width: 50%;
+    margin: auto;
+    position: absolute;
+}
+
+#emptyDiv1{
+    height: 150px;
+}
+
 code {
     background-color: #ffcdb2;
     width: 1000px;

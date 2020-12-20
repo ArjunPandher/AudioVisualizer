@@ -37,9 +37,9 @@ app.get('/api', (req, res) => {
 	res.sendFile(path.join(__dirname, '/pub/api.html'))
 })
 
-app.get('/God Is Perfect.mp3', (req, res) => {
+app.get('/1539.mp3', (req, res) => {
 	// sending an mp3 file
-	res.sendFile(path.join(__dirname, '/pub/God Is Perfect.mp3'))
+	res.sendFile(path.join(__dirname, '/pub/1539.mp3'))
 })
 
 app.get('/GOAT.mp3', (req, res) => {

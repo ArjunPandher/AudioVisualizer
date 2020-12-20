@@ -27,7 +27,7 @@
                 <div class="audioSubtitle">Song Name: I'm God - Clams Casino</div>
             </div>
 
-            <div id="audioVisDiv">
+            <div class="audioVisDiv">
                 <canvas id="canvas-bar" width="1000" height="300"></canvas>
             </div>
 
@@ -86,8 +86,70 @@
                 <div class="audioSubtitle">Song Name: G.O.A.T. - Polyphia</div>
             </div>
 
-            <div id="audioVisDiv">
+            <div class="audioVisDiv">
                 <div id="audioVisElement1"><h1>Currently Playing: G.O.A.T. - Polyphia</h1></div>
+            </div>
+
+            <div class="codeDiv">
+                <ul class="tabs">
+                    <li class="active" id="js-tab2"><span class="tabTitle">JS</span></li>
+                    <li id="html-tab2"><span class="tabTitle">HTML</span></li>
+                    <li id="css-tab2"><span class="tabTitle">CSS</span></li>
+                </ul>
+                <div>
+                    <code id="js-code2" class="active">
+                        const audioVisGen = new AudioVisGenerator("player") <br>
+                        const barCanvas = document.getElementById("audioVisElement1") <br>
+                        const basicElemVis = audioGen2.addElement(basicElem, 3, [3]) <br>
+                        const player2 = document.getElementById("player2")
+                        let playerHasBeenPlayed = false
+                        player.onplay = () => {
+                        &emsp;    if (!playerHasBeenPlayed) { <br>
+                        &emsp;&emsp;    audioVisGen.setUp() <br>
+                        &emsp;&emsp;    playerHasBeenPlayed = true <br>
+                        &emsp;} <br>
+                        &emsp;audioVisGen.animateAllCanvases() <br>
+                        }
+                    </code>
+                </div>
+                <div>
+                    <code id="html-code2">
+                        &lt;audio controls id="player2"> <br>
+                        &emsp;&lt;source src="GOAT.mp3.mp3" type="audio/mp3"> <br>
+                        &lt;/audio> <br>
+                        &lt;div id="audioVisDiv"><br>
+                        &emsp;&lt;div id="audioVisElement1">&lt;h1>Currently Playing: G.O.A.T. - Polyphia&lt;/h1>&lt;/div> <br>
+                        &lt;/div>
+                    </code>
+                </div>
+                <div>
+                    <code id="css-code2">
+                        #audioVisElement {<br>
+                            &emsp;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;<br>
+                            &emsp;width: 50%;<br>
+                            &emsp;margin: auto;<br>
+                        }
+                    </code>
+                </div>
+            </div>
+
+
+
+            <div class="description">
+                <h2>Advanced Audio Visualiser Element</h2>
+                An advanced element that changes itself to sync up with the music being played, using multiple types of animations at the same time.
+            </div>
+
+            <div class="audioPlayer">
+                <audio controls id="player3">
+                    <source src="https://quiet-dawn-92680.herokuapp.com/1539.mp3" type="audio/mp3">
+                </audio> <br>
+                <div class="audioSubtitle">Song Name: 1539 N. Calvert - JPEGMAFIA</div>
+            </div>
+
+            <div class="audioVisDiv">
+                <div id="emptyDiv1"></div>
+                <div id="audioVisElement2"><h1>Currently Playing: 1539 N. Calvert - JPEGMAFIA</h1></div>
             </div>
 
             <div class="codeDiv">
