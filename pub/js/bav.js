@@ -200,9 +200,6 @@ class AudioVisGenerator {
             let firstTransformAnim = true;
 
             for (let i = 0; i < animElement.animationType.length; i++) {
-                if (animElement.animationType[i] === 3) {
-                    console.log("Bruh")
-                }
                 switch (animElement.animationType[i]) {
                     case 0:
                         vertAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
@@ -217,6 +214,7 @@ class AudioVisGenerator {
                         firstTransformAnim = false;
                         break;
                     case 3:
+                        console.log("Bruh")
                         scaleXAnim(dataAvg, animElement.animationParams[i], firstTransformAnim);
                         firstTransformAnim = false;
                         break;
