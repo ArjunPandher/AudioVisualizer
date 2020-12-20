@@ -1,3 +1,5 @@
+import { AudioVisGenerator } from "bav.js"
+
 const audioGen1 = new AudioVisGenerator("player1")
 const audioGen2 = new AudioVisGenerator("player2")
 const audioGen3 = new AudioVisGenerator("player3")
